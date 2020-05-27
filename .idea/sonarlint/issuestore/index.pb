@@ -29,3 +29,5 @@ Bnode_modules/browser-resolve/node_modules/resolve/test/resolver.js,2\c\2c35d9c
 App.tsx,2\f\2f3db35b9bba122792d724b9b48a0aac92ebbb79
 H
 android/app/build.gradle,5\9\594ba479000e0bb5513707b709ad1cd52da9063a
+D
+android/build.gradle,1\3\13f012f60e18f38225ce59137db2e07d5d70b29c

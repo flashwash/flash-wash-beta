@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Surface, Text, Avatar, useTheme} from 'react-native-paper';
+import {Surface, Text, useTheme} from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import color from 'color';
 
@@ -9,13 +9,9 @@ type Props = {
   id: number;
   name: string;
   content: string;
-  people: Array<{
-    name: string;
-    image: string;
-  }>;
 };
 
-export const NotificationTwitt = (props: Props) => {
+export const NotificationDetail = (props: Props) => {
   const theme = useTheme();
 
   const contentColor = color(theme.colors.text)
@@ -24,7 +20,7 @@ export const NotificationTwitt = (props: Props) => {
     .string();
 
   return (
-    <Surface style={styles.container}>
+    <Surface accessibilityStates style={styles.container}>
       <View style={styles.leftColumn}>
         <MaterialCommunityIcons
           name={'information-outline'}
@@ -33,21 +29,10 @@ export const NotificationTwitt = (props: Props) => {
         />
       </View>
       <View style={styles.rightColumn}>
-        <View style={styles.topRow}>
-          {/* {props.people.map(({name, image}) => (
-            <Avatar.Image
-              style={{marginRight: 10}}
-              key={name}
-              source={{uri: image}}
-              size={40}
-            />
-          ))} */}
-        </View>
-        <Text style={{marginBottom: 10}}>
-          {props.people.map(({name}) => name).join(' and ')} likes {props.name}{' '}
-          tweet.
+        <View style={styles.topRow} />
+        <Text accessibilityStates style={{color: contentColor}}>
+          {props.content}
         </Text>
-        <Text style={{color: contentColor}}>{props.content}</Text>
       </View>
     </Surface>
   );

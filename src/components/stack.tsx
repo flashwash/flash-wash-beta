@@ -85,9 +85,9 @@ export const StackNavigator = () => {
         }}
       />
       <Stack.Screen
-        name="Details"
+        name={'Details'}
         component={Details}
-        options={{headerTitle: 'Tweet'}}
+        options={{headerTitle: 'Detalle de Servicio'}}
       />
     </Stack.Navigator>
   );

@@ -23,8 +23,9 @@ export const Message = () => {
         Envianos un mensaje o Sugerencia
       </Headline>
       <Caption style={styles.centerText}>
-        Todas las sugerencias son atendidas y responderemos tus dudas o
-        comentarios lo antes posible!
+        Tus mensajes nos ayudan a mejorar nuestro servicio, todas las
+        sugerencias son atendidas en el orden que se reciben y responderemos tus
+        dudas o comentarios lo antes posible!
       </Caption>
       <Button
         accessibilityStates

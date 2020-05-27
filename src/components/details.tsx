@@ -1,7 +1,7 @@
 import React from 'react';
 import {RouteProp} from '@react-navigation/native';
 
-import {DetailedTwitt} from '../components/detailedTwitt';
+import {DetailedService} from './detailedService';
 import {StackNavigatorParamlist} from '../types';
 
 type Props = {
@@ -9,5 +9,5 @@ type Props = {
 };
 
 export const Details = (props: Props) => {
-  return <DetailedTwitt {...props.route.params} />;
+  return <DetailedService {...props.route.params} />;
 };

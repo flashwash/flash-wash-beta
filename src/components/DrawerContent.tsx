@@ -62,10 +62,10 @@ export const DrawerContent = (props: Props) => {
         </View>
         <Drawer.Section accessibilityStates style={styles.drawerSection}>
           <DrawerItem
-            icon={({color, size}) => (
+            icon={({size}) => (
               <MaterialCommunityIcons
-                name="account-outline"
-                color={color}
+                name={'account-outline'}
+                color={'#4FC3F7'}
                 size={size}
               />
             )}
@@ -73,10 +73,10 @@ export const DrawerContent = (props: Props) => {
             onPress={() => {}}
           />
           <DrawerItem
-            icon={({color, size}) => (
+            icon={({size}) => (
               <MaterialCommunityIcons
                 name={'history'}
-                color={color}
+                color={'#4FC3F7'}
                 size={size}
               />
             )}
@@ -84,10 +84,10 @@ export const DrawerContent = (props: Props) => {
             onPress={() => {}}
           />
           <DrawerItem
-            icon={({color, size}) => (
+            icon={({size}) => (
               <MaterialCommunityIcons
                 name={'map-marker'}
-                color={color}
+                color={'#4FC3F7'}
                 size={size}
               />
             )}
@@ -95,15 +95,23 @@ export const DrawerContent = (props: Props) => {
             onPress={() => {}}
           />
           <DrawerItem
-            icon={({color, size}) => (
-              <MaterialCommunityIcons name={'car'} color={color} size={size} />
+            icon={({size}) => (
+              <MaterialCommunityIcons
+                name={'car'}
+                color={'#4FC3F7'}
+                size={size}
+              />
             )}
             label={'Mis Vehiculos'}
             onPress={() => {}}
           />
           <DrawerItem
-            icon={({color, size}) => (
-              <MaterialCommunityIcons name="tune" color={color} size={size} />
+            icon={({size}) => (
+              <MaterialCommunityIcons
+                name={'tune'}
+                color={'#4FC3F7'}
+                size={size}
+              />
             )}
             label={'Preferencias'}
             onPress={() => {}}
@@ -118,15 +126,32 @@ export const DrawerContent = (props: Props) => {
               </View>
             </View>
           </TouchableRipple>
-          {/* <TouchableRipple onPress={toggleRTL}>
-            <View style={styles.preference}>
-              <Text>RTL</Text>
-              <View pointerEvents="none">
-                <Switch value={rtl === 'right'} />
-              </View>
-            </View>
-          </TouchableRipple> */}
         </Drawer.Section>
+        <Drawer.Section accessibilityStates style={styles.drawerSection}>
+          <DrawerItem
+            icon={({size}) => (
+              <MaterialCommunityIcons
+                name={'script-text-outline'}
+                color={'#4FC3F7'}
+                size={size}
+              />
+            )}
+            label={'Terminos y Condiciones'}
+            onPress={() => {}}
+          />
+          <DrawerItem
+            icon={({size}) => (
+              <MaterialCommunityIcons
+                name={'email'}
+                color={'#4FC3F7'}
+                size={size}
+              />
+            )}
+            label={'Contactanos'}
+            onPress={() => {}}
+          />
+        </Drawer.Section>
+        <Caption style={styles.footNote}>Version 0.1.05.26</Caption>
       </Animated.View>
     </DrawerContentScrollView>
   );
@@ -137,7 +162,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   userInfoSection: {
-    paddingLeft: 20,
+    alignItems: 'center',
     paddingTop: 5,
   },
   title: {
@@ -170,5 +195,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingVertical: 12,
     paddingHorizontal: 16,
+  },
+  footNote: {
+    paddingLeft: 15,
   },
 });

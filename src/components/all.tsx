@@ -2,13 +2,13 @@ import React from 'react';
 import {View, FlatList, StyleSheet} from 'react-native';
 import {useTheme} from 'react-native-paper';
 
-import {NotificationTwitt} from '../components/notificationTwitt';
-import {notificationTweets} from '../Data';
+import {NotificationDetail} from './notificationDetail';
+import {notifications} from '../Data';
 
-type NotificationTwittProps = React.ComponentProps<typeof NotificationTwitt>;
+type NotificationTwittProps = React.ComponentProps<typeof NotificationDetail>;
 
 function renderItem({item}: {item: NotificationTwittProps}) {
-  return <NotificationTwitt {...item} />;
+  return <NotificationDetail {...item} />;
 }
 
 function keyExtractor(item: NotificationTwittProps) {
@@ -22,7 +22,7 @@ export const AllNotifications = () => {
     <FlatList
       contentContainerStyle={{backgroundColor: theme.colors.background}}
       style={{backgroundColor: theme.colors.background}}
-      data={notificationTweets}
+      data={notifications}
       renderItem={renderItem}
       keyExtractor={keyExtractor}
       ItemSeparatorComponent={() => (

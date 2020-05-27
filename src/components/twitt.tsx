@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View, Image, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, Image} from 'react-native';
 import {
   Surface,
   Title,
@@ -9,7 +9,6 @@ import {
   TouchableRipple,
   useTheme,
 } from 'react-native-paper';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import color from 'color';
 
 type Props = {
@@ -28,11 +27,6 @@ type Props = {
 
 export const Twitt = (props: Props) => {
   const theme = useTheme();
-
-  const iconColor = color(theme.colors.text)
-    .alpha(0.54)
-    .rgb()
-    .string();
 
   const contentColor = color(theme.colors.text)
     .alpha(0.8)
@@ -75,48 +69,6 @@ export const Twitt = (props: Props) => {
               },
             ]}
           />
-          <View style={styles.bottomRow}>
-            <TouchableOpacity
-              onPress={() => {}}
-              hitSlop={{top: 10, bottom: 10}}>
-              <View style={styles.iconContainer}>
-                <MaterialCommunityIcons
-                  name="comment-outline"
-                  size={12}
-                  color={iconColor}
-                />
-                <Caption style={styles.iconDescription}>
-                  {props.comments}
-                </Caption>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {}}
-              hitSlop={{top: 10, bottom: 10}}>
-              <View style={styles.iconContainer}>
-                <MaterialCommunityIcons
-                  name="share-outline"
-                  size={14}
-                  color={iconColor}
-                />
-                <Caption style={styles.iconDescription}>
-                  {props.retweets}
-                </Caption>
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {}}
-              hitSlop={{top: 10, bottom: 10}}>
-              <View style={styles.iconContainer}>
-                <MaterialCommunityIcons
-                  name="heart-outline"
-                  size={12}
-                  color={iconColor}
-                />
-                <Caption style={styles.iconDescription}>{props.hearts}</Caption>
-              </View>
-            </TouchableOpacity>
-          </View>
         </View>
       </Surface>
     </TouchableRipple>
@@ -152,12 +104,6 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     width: '100%',
     height: 150,
-  },
-  bottomRow: {
-    paddingVertical: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
   },
   iconContainer: {
     flexDirection: 'row',

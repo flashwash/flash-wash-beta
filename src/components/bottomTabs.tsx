@@ -19,23 +19,12 @@ type Props = {
 };
 
 export const BottomTabs = () => {
-  // const routeName = props.route.name ? props.route.name : 'Feed';
-
   const theme = useTheme();
   const safeArea = useSafeArea();
   const isFocused = useIsFocused();
 
   let requestIcon = 'car-electric';
   let scheduleIcon = 'calendar-clock';
-
-  // switch (routeName) {
-  //   case 'Messages':
-  //     icon = 'email-plus-outline';
-  //     break;
-  //   default:
-  //     icon = 'car-electric';
-  //     break;
-  // }
 
   const tabBarColor = theme.dark
     ? (overlay(6, theme.colors.surface) as string)
@@ -62,6 +51,14 @@ export const BottomTabs = () => {
           }}
         />
         <Tab.Screen
+          name={'Servicios'}
+          component={Notifications}
+          options={{
+            tabBarIcon: 'car-wash',
+            tabBarColor,
+          }}
+        />
+        <Tab.Screen
           name={'Notificaciones'}
           component={Notifications}
           options={{
@@ -69,14 +66,14 @@ export const BottomTabs = () => {
             tabBarColor,
           }}
         />
-        <Tab.Screen
+        {/* <Tab.Screen
           name={'Mensajes'}
           component={Message}
           options={{
             tabBarIcon: 'message-text-outline',
             tabBarColor,
           }}
-        />
+        /> */}
       </Tab.Navigator>
       <Portal>
         <FAB

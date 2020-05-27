@@ -23,7 +23,7 @@ type Props = {
   hearts: number;
 };
 
-export const DetailedTwitt = (props: Props) => {
+export const DetailedService = (props: Props) => {
   const theme = useTheme();
 
   const contentColor = color(theme.colors.text)

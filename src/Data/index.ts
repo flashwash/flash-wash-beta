@@ -1,5 +1,5 @@
 import {Twitt} from '../components/twitt';
-import {NotificationTwitt} from '../components/notificationTwitt';
+import {NotificationDetail} from '../components/notificationDetail';
 // import {deluxe} from '../assets/index';
 // import delux from '../assets/deluxe.png';
 
@@ -93,93 +93,42 @@ export const twitts: Omit<TwittProps, 'onPress'>[] = [
   },
 ];
 
-type NotificationTwittProps = React.ComponentProps<typeof NotificationTwitt>;
+type NotificationTwittProps = React.ComponentProps<typeof NotificationDetail>;
 
-export const notificationTweets: Array<NotificationTwittProps> = [
+export const notifications: Array<NotificationTwittProps> = [
   {
     id: 1,
-    content:
-      'In any case, the focus is not react navigation, but the possibility of writing your app once and running it on several different platforms.  Then you use the technology you want, for example for the interface, I choose @rn_paper',
-    name: 'Leandro Fevre',
-    people: [
-      {
-        name: 'Evan Bacon 🥓',
-        image:
-          'https://pbs.twimg.com/profile_images/1203624639538302976/h-rvrjWy_400x400.jpg',
-      },
-      {
-        name: 'Leandro Favre',
-        image:
-          'https://pbs.twimg.com/profile_images/1181019042557173760/a1C7MHkM_400x400.jpg',
-      },
-    ],
+    content: '⏱️ Nuestro asociado llegara a brindar tu servico en 15 mins.',
+    name: 'Roberto Lopez',
   },
   {
     id: 2,
-    content: "It's finally somewhat bright on my way to work 🥳",
+    content:
+      'Recibiste un servicio de lavado Express por nuestro asociado Mario Herrera, si te gusto nuestro servicio, nos peudes dar un like en nuestra pagina de facebook 👍',
     name: 'Tomasz Łakomy',
-    people: [
-      {
-        name: 'Wojteg1337',
-        image:
-          'https://pbs.twimg.com/profile_images/1164452902913675264/cn3bEqJp_400x400.jpg',
-      },
-    ],
   },
   {
     id: 3,
     content:
-      'What they say during code review:\n\n"I see your point, but this is extra work - how about we create a ticket for it and get to it next sprint?"\n\nWhat they mean:\n\n"I literally don\'t give a single shit about it and this ticket will rot in the backlog for eternity"',
+      '⏱️ Nuestro asociado Mario esta por llegar a tu ubicación, favor de estar atento para darle acceso a lavar el vehiculo',
     name: 'Tomasz Łakomy',
-    people: [
-      {
-        name: 'Nader Dabit',
-        image:
-          'https://pbs.twimg.com/profile_images/1167093599600816129/APWfpd5O_400x400.jpg',
-      },
-    ],
   },
   {
     id: 4,
     content:
-      'In any case, the focus is not react navigation, but the possibility of writing your app once and running it on several different platforms.  Then you use the technology you want, for example for the interface, I choose @rn_paper',
+      'Recibiste un servicio de lavado Premium por nuestro asociado Mario Herrera, si te gusto nuestro servicio, nos peudes dar un like en nuestra pagina de facebook 👍',
     name: 'Leandro Fevre',
-    people: [
-      {
-        name: 'Evan Bacon 🥓',
-        image:
-          'https://pbs.twimg.com/profile_images/1203624639538302976/h-rvrjWy_400x400.jpg',
-      },
-      {
-        name: 'Leandro Favre',
-        image:
-          'https://pbs.twimg.com/profile_images/1181019042557173760/a1C7MHkM_400x400.jpg',
-      },
-    ],
   },
   {
     id: 5,
-    content: "It's finally somewhat bright on my way to work 🥳",
+    content:
+      'Nuestro asociado Roberto esta por terminar un servicio, estara en tu ubicación en 16 minutos',
     name: 'Tomasz Łakomy',
-    people: [
-      {
-        name: 'Wojteg1337',
-        image:
-          'https://pbs.twimg.com/profile_images/1164452902913675264/cn3bEqJp_400x400.jpg',
-      },
-    ],
   },
   {
     id: 6,
     content:
-      'What they say during code review:\n\n"I see your point, but this is extra work - how about we create a ticket for it and get to it next sprint?"\n\nWhat they mean:\n\n"I literally don\'t give a single shit about it and this ticket will rot in the backlog for eternity"',
+      '⭐ Recibiste un servicio de encerado premium por nuestro asociado Roberto, y estas a 1 servicio e mas de obtener un servicio Deluxe por nuestra cuenta',
     name: 'Tomasz Łakomy',
-    people: [
-      {
-        name: 'Nader Dabit',
-        image:
-          'https://pbs.twimg.com/profile_images/1167093599600816129/APWfpd5O_400x400.jpg',
-      },
-    ],
   },
 ];
