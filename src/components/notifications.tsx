@@ -5,14 +5,14 @@ import {useTheme} from 'react-native-paper';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 
 import overlay from './overlay';
-import {Feed} from './feed';
+import {Promotions} from './promotions';
 import {AllNotifications} from './all';
 
 const initialLayout = {width: Dimensions.get('window').width};
 
 const All = () => <AllNotifications />;
 
-const Mentions = () => <Feed />;
+const Mentions = () => <Promotions />;
 
 export const Notifications = () => {
   const [index, setIndex] = React.useState(0);

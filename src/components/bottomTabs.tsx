@@ -8,8 +8,8 @@ import {useIsFocused, RouteProp} from '@react-navigation/native';
 
 import overlay from './overlay';
 import {Feed} from './feed';
-import {Message} from '../components/message';
 import {Notifications} from './notifications';
+import {Services} from './services';
 import {StackNavigatorParamlist} from '../types';
 
 const Tab = createMaterialBottomTabNavigator();
@@ -52,7 +52,7 @@ export const BottomTabs = () => {
         />
         <Tab.Screen
           name={'Servicios'}
-          component={Notifications}
+          component={Services}
           options={{
             tabBarIcon: 'car-wash',
             tabBarColor,
@@ -66,14 +66,6 @@ export const BottomTabs = () => {
             tabBarColor,
           }}
         />
-        {/* <Tab.Screen
-          name={'Mensajes'}
-          component={Message}
-          options={{
-            tabBarIcon: 'message-text-outline',
-            tabBarColor,
-          }}
-        /> */}
       </Tab.Navigator>
       <Portal>
         <FAB

@@ -1,11 +1,11 @@
 import React from 'react';
 import {StyleSheet, View, ImageBackground} from 'react-native';
 
-export const Promotions = () => {
+export const Services = () => {
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require('../assets/promo.png')}
+        source={require('../assets/wash.jpg')}
         style={styles.backgroundImage}
       />
     </View>

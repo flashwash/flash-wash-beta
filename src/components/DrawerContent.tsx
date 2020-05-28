@@ -151,7 +151,7 @@ export const DrawerContent = (props: Props) => {
             onPress={() => {}}
           />
         </Drawer.Section>
-        <Caption style={styles.footNote}>Version 0.1.05.26</Caption>
+        <Caption style={styles.footNote}>Version 0.1.05.28</Caption>
       </Animated.View>
     </DrawerContentScrollView>
   );
