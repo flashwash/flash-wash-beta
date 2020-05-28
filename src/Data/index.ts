@@ -1,9 +1,9 @@
-import {Twitt} from '../components/twitt';
+import {HomeScreen} from '../components/homeScreen';
 import {NotificationDetail} from '../components/notificationDetail';
 // import {deluxe} from '../assets/index';
 // import delux from '../assets/deluxe.png';
 
-type TwittProps = React.ComponentProps<typeof Twitt>;
+type TwittProps = React.ComponentProps<typeof HomeScreen>;
 
 export const twitts: Omit<TwittProps, 'onPress'>[] = [
   //Aqui va la descripcion de los servicios
