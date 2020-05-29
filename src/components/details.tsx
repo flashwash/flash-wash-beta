@@ -5,9 +5,9 @@ import {DetailedService} from './detailedService';
 import {StackNavigatorParamlist} from '../types';
 
 type Props = {
-  route: RouteProp<StackNavigatorParamlist, 'Details'>;
+  route: RouteProp<StackNavigatorParamlist, 'Servicios'>;
 };
 
 export const Details = (props: Props) => {
-  return <DetailedService {...props.route.params} />;
+  return <DetailedService {...props} />;
 };

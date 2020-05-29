@@ -8,8 +8,11 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import {DrawerActions} from '@react-navigation/native';
 
 import {BottomTabs} from './bottomTabs';
-import {Details} from './details';
+// import {Details} from './details';
+import {Services} from './services';
 import {StackNavigatorParamlist} from '../types';
+import {Message} from './message';
+import {Profile} from './profile';
 
 const Stack = createStackNavigator<StackNavigatorParamlist>();
 
@@ -85,9 +88,19 @@ export const StackNavigator = () => {
         }}
       />
       <Stack.Screen
-        name={'Details'}
-        component={Details}
-        options={{headerTitle: 'Detalle de Servicio'}}
+        name={'Servicios'}
+        component={Services}
+        options={{headerTitle: 'Servicios Disponibles'}}
+      />
+      <Stack.Screen
+        name={'Mensajes'}
+        component={Message}
+        options={{headerTitle: 'Contactanos'}}
+      />
+      <Stack.Screen
+        name={'Profile'}
+        component={Profile}
+        options={{headerTitle: 'Perfil'}}
       />
     </Stack.Navigator>
   );

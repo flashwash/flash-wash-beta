@@ -70,7 +70,7 @@ export const DrawerContent = (props: Props) => {
               />
             )}
             label={'Perfil'}
-            onPress={() => {}}
+            onPress={() => props.navigation.navigate('Profile')}
           />
           <DrawerItem
             icon={({size}) => (
@@ -148,7 +148,7 @@ export const DrawerContent = (props: Props) => {
               />
             )}
             label={'Contactanos'}
-            onPress={() => {}}
+            onPress={() => props.navigation.navigate('Mensajes')}
           />
         </Drawer.Section>
         <Caption style={styles.footNote}>Version 0.1.05.28</Caption>

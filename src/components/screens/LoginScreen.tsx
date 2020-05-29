@@ -2,7 +2,6 @@ import React, {memo, useState} from 'react';
 import {TouchableOpacity, StyleSheet, Text, View} from 'react-native';
 import Background from '../Background';
 import Logo from '../Logo';
-import Header from '../Header';
 import Button from '../Button';
 import TextInput from '../TextInput';
 import BackButton from '../BackButton';
@@ -36,32 +35,32 @@ const LoginScreen = ({navigation}: Props) => {
       <BackButton goBack={() => navigation.navigate('HomeScreen')} />
 
       <Logo />
+      <View style={styles.textContainer}>
+        <TextInput
+          accessibilityStates
+          label="Email"
+          returnKeyType="next"
+          value={email.value}
+          onChangeText={text => setEmail({value: text, error: ''})}
+          error={!!email.error}
+          errorText={email.error}
+          autoCapitalize="none"
+          autoCompleteType="email"
+          textContentType="emailAddress"
+          keyboardType="email-address"
+        />
 
-      <Header>Bienvenido</Header>
-
-      <TextInput
-        label="Email"
-        returnKeyType="next"
-        value={email.value}
-        onChangeText={text => setEmail({value: text, error: ''})}
-        error={!!email.error}
-        errorText={email.error}
-        autoCapitalize="none"
-        autoCompleteType="email"
-        textContentType="emailAddress"
-        keyboardType="email-address"
-      />
-
-      <TextInput
-        label="Contraseña"
-        returnKeyType="done"
-        value={password.value}
-        onChangeText={text => setPassword({value: text, error: ''})}
-        error={!!password.error}
-        errorText={password.error}
-        secureTextEntry
-      />
-
+        <TextInput
+          accessibilityStates
+          label="Contraseña"
+          returnKeyType="done"
+          value={password.value}
+          onChangeText={text => setPassword({value: text, error: ''})}
+          error={!!password.error}
+          errorText={password.error}
+          secureTextEntry
+        />
+      </View>
       <View style={styles.forgotPassword}>
         <TouchableOpacity
           onPress={() => navigation.navigate('ForgotPasswordScreen')}>
@@ -69,7 +68,7 @@ const LoginScreen = ({navigation}: Props) => {
         </TouchableOpacity>
       </View>
 
-      <Button mode="contained" onPress={_onLoginPressed}>
+      <Button accessibilityStates mode="contained" onPress={_onLoginPressed}>
         Iniciar Sesion
       </Button>
 
@@ -88,6 +87,11 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'flex-end',
     marginBottom: 24,
+  },
+  textContainer: {
+    width: '100%',
+    alignItems: 'flex-end',
+    marginTop: 60,
   },
   row: {
     flexDirection: 'row',

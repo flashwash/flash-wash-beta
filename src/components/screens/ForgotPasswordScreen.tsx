@@ -37,6 +37,7 @@ const ForgotPasswordScreen = ({navigation}: Props) => {
       <Header>Recuperar Contraseña</Header>
 
       <TextInput
+        accessibilityStates
         label="E-mail"
         returnKeyType="done"
         value={email.value}
@@ -49,7 +50,11 @@ const ForgotPasswordScreen = ({navigation}: Props) => {
         keyboardType="email-address"
       />
 
-      <Button mode="contained" onPress={_onSendPressed} style={styles.button}>
+      <Button
+        accessibilityStates
+        mode="contained"
+        onPress={_onSendPressed}
+        style={styles.button}>
         Mandar Instrucciones
       </Button>
 

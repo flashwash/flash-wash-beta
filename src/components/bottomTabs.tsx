@@ -7,7 +7,8 @@ import {useSafeArea} from 'react-native-safe-area-context';
 import {useIsFocused, RouteProp} from '@react-navigation/native';
 
 import overlay from './overlay';
-import {Feed} from './feed';
+// import {Feed} from './feed';
+import {HomeScreen} from './homeScreen';
 import {Notifications} from './notifications';
 import {Services} from './services';
 import {StackNavigatorParamlist} from '../types';
@@ -33,7 +34,7 @@ export const BottomTabs = () => {
   return (
     <React.Fragment>
       <Tab.Navigator
-        initialRouteName={'Feed'}
+        initialRouteName={'HomeScreen'}
         backBehavior={'initialRoute'}
         shifting={true}
         activeColor={theme.colors.primary}
@@ -44,7 +45,7 @@ export const BottomTabs = () => {
         sceneAnimationEnabled={false}>
         <Tab.Screen
           name={'Inicio'}
-          component={Feed}
+          component={HomeScreen}
           options={{
             tabBarIcon: 'home-account',
             tabBarColor,

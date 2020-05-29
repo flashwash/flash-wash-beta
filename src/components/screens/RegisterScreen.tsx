@@ -43,6 +43,7 @@ const RegisterScreen = ({navigation}: Props) => {
       <Header>Crea Una Cuenta</Header>
 
       <TextInput
+        accessibilityStates
         label={'Nombre'}
         returnKeyType="next"
         value={name.value}
@@ -52,6 +53,7 @@ const RegisterScreen = ({navigation}: Props) => {
       />
 
       <TextInput
+        accessibilityStates
         label={'Email'}
         returnKeyType="next"
         value={email.value}
@@ -65,6 +67,7 @@ const RegisterScreen = ({navigation}: Props) => {
       />
 
       <TextInput
+        accessibilityStates
         label={'Contraseña'}
         returnKeyType="done"
         value={password.value}
@@ -74,7 +77,11 @@ const RegisterScreen = ({navigation}: Props) => {
         secureTextEntry
       />
 
-      <Button mode="contained" onPress={_onSignUpPressed} style={styles.button}>
+      <Button
+        accessibilityStates
+        mode="contained"
+        onPress={_onSignUpPressed}
+        style={styles.button}>
         Registrarse
       </Button>
 
