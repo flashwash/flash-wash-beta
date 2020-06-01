@@ -9,7 +9,7 @@ import {
   Main,
 } from './components/screens';
 
-const isAuthorized: boolean = true;
+const isAuthorized: boolean = false;
 
 const Router = createStackNavigator(
   {

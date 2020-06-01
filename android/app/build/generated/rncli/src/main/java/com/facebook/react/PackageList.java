@@ -13,6 +13,8 @@ import java.util.ArrayList;
 
 // @react-native-community/masked-view
 import org.reactnative.maskedview.RNCMaskedViewPackage;
+// @react-native-firebase/app
+import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
 // react-native-appearance
 import io.expo.appearance.RNCAppearancePackage;
 // react-native-geolocation-service
@@ -79,6 +81,7 @@ public class PackageList {
     return new ArrayList<>(Arrays.<ReactPackage>asList(
       new MainReactPackage(mConfig),
       new RNCMaskedViewPackage(),
+      new ReactNativeFirebaseAppPackage(),
       new RNCAppearancePackage(),
       new RNFusedLocationPackage(),
       new RNGestureHandlerPackage(),
