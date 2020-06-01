@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "424063919474",
+    "firebase_url": "https://flashwash-72262.firebaseio.com",
+    "project_id": "flashwash-72262",
+    "storage_bucket": "flashwash-72262.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:424063919474:android:7fb6347339e6dbc31fe9eb",
+        "android_client_info": {
+          "package_name": "com.flashwash"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "424063919474-lbuk3uoqkqglegid4f70bdbaa5dil1ib.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASf8QyWec-obxTGYFeonvr9r0CpX9NHmg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "424063919474-lbuk3uoqkqglegid4f70bdbaa5dil1ib.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
