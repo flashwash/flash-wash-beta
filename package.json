@@ -19,6 +19,7 @@
     "babel-plugin-module-resolver": "3.2.0",
     "eslint-plugin-import": "2.18.2",
     "formik": "^2.1.4",
+    "jetifier": "^1.6.5",
     "react": "16.11.0",
     "react-google-places-autocomplete": "^2.0.2",
     "react-native": "0.62.1",
