@@ -68,7 +68,7 @@ const LoginScreen = ({navigation}: Props) => {
         </TouchableOpacity>
       </View>
 
-      <Button accessibilityStates mode="contained" onPress={_onLoginPressed}>
+      <Button accessibilityStates mode={'contained'} onPress={_onLoginPressed}>
         Iniciar Sesion
       </Button>
 
