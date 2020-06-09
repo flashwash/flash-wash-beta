@@ -16,13 +16,13 @@ const HomeScreen = ({navigation}: Props) => (
     <Header>Flash Wash</Header>
     <Button
       accessibilityStates
-      mode="contained"
+      mode={'contained'}
       onPress={() => navigation.navigate('LoginScreen')}>
       Iniciar Sesión
     </Button>
     <Button
       accessibilityStates
-      mode="outlined"
+      mode={'outlined'}
       onPress={() => navigation.navigate('RegisterScreen')}>
       Registrarse
     </Button>
