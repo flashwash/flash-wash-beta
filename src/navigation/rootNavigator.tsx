@@ -7,7 +7,7 @@ import {
 import {DefaultTheme, DarkTheme} from '@react-navigation/native';
 import {useTheme} from 'react-native-paper';
 
-import {StackNavigator} from '../components/stack';
+import {HomeStack} from '../components/homeStack';
 import {DrawerContent} from '../components/DrawerContent';
 import React from 'react';
 
@@ -23,7 +23,7 @@ export const RootNavigator = () => {
         drawerContent={(
           props: DrawerContentComponentProps<DrawerNavigationProp<{}>>,
         ) => <DrawerContent {...props} />}>
-        <Drawer.Screen name={'Home'} component={StackNavigator} />
+        <Drawer.Screen name={'Home'} component={HomeStack} />
       </Drawer.Navigator>
     </NavigationContainer>
   );

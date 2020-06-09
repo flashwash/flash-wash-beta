@@ -16,7 +16,7 @@ import {Profile} from './profile';
 
 const Stack = createStackNavigator<StackNavigatorParamlist>();
 
-export const StackNavigator = () => {
+export const HomeStack = () => {
   const theme = useTheme();
 
   return (
