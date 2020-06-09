@@ -151,7 +151,7 @@ export const DrawerContent = (props: Props) => {
             onPress={() => props.navigation.navigate('Mensajes')}
           />
         </Drawer.Section>
-        <Caption style={styles.footNote}>Version 0.1.05.28</Caption>
+        <Caption style={styles.footNote}>Version 0.1.06.08</Caption>
       </Animated.View>
     </DrawerContentScrollView>
   );
