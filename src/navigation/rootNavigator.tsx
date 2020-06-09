@@ -7,7 +7,7 @@ import {
 import {DefaultTheme, DarkTheme} from '@react-navigation/native';
 import {useTheme} from 'react-native-paper';
 
-import {HomeStack} from '../components/homeStack';
+import {HomeStack} from './homeStack';
 import {DrawerContent} from '../components/DrawerContent';
 import React from 'react';
 

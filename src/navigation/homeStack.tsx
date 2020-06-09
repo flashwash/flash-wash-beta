@@ -7,12 +7,12 @@ import {Appbar, Avatar, useTheme} from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {DrawerActions} from '@react-navigation/native';
 
-import {BottomTabs} from './bottomTabs';
+import {BottomTabs} from '../components/bottomTabs';
 // import {Details} from './details';
-import {Services} from './services';
+import {Services} from '../components/services';
 import {StackNavigatorParamlist} from '../types';
-import {Message} from './message';
-import {Profile} from './profile';
+import {Message} from '../components/message';
+import {Profile} from '../components/profile';
 
 const Stack = createStackNavigator<StackNavigatorParamlist>();
 
