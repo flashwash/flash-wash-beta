@@ -1,9 +1,9 @@
 import React, {memo, useState} from 'react';
 import {Text, StyleSheet, TouchableOpacity} from 'react-native';
-import {emailValidator} from '../core/utils';
+import {emailValidator} from '../../../src/components/helpers/utils';
 import Background from '../Background';
 import BackButton from '../BackButton';
-import Logo from '../Logo';
+import Logo from '../helpers/logo';
 import Header from '../Header';
 import TextInput from '../TextInput';
 import {theme} from '../../assets/theme';
@@ -38,21 +38,21 @@ const ForgotPasswordScreen = ({navigation}: Props) => {
 
       <TextInput
         accessibilityStates
-        label="E-mail"
-        returnKeyType="done"
+        label={'E-mail'}
+        returnKeyType={'done'}
         value={email.value}
         onChangeText={text => setEmail({value: text, error: ''})}
         error={!!email.error}
         errorText={email.error}
-        autoCapitalize="none"
-        autoCompleteType="email"
-        textContentType="emailAddress"
-        keyboardType="email-address"
+        autoCapitalize={'none'}
+        autoCompleteType={'email'}
+        textContentType={'emailAddress'}
+        keyboardType={'email-address'}
       />
 
       <Button
         accessibilityStates
-        mode="contained"
+        mode={'contained'}
         onPress={_onSendPressed}
         style={styles.button}>
         Mandar Instrucciones

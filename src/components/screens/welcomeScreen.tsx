@@ -1,6 +1,6 @@
 import React, {memo} from 'react';
 import Background from '../Background';
-import Logo from '../Logo';
+import Logo from '../../../src/components/helpers/logo';
 import Header from '../Header';
 import Button from '../Button';
 // import Paragraph from '../Paragraph';

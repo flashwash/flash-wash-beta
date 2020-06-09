@@ -1,12 +1,12 @@
 import React, {memo, useState} from 'react';
 import {TouchableOpacity, StyleSheet, Text, View} from 'react-native';
 import Background from '../Background';
-import Logo from '../Logo';
+import Logo from '../helpers/logo';
 import Button from '../Button';
 import TextInput from '../TextInput';
 import BackButton from '../BackButton';
 import {theme} from '../../assets/theme';
-import {emailValidator, passwordValidator} from '../core/utils';
+import {emailValidator, passwordValidator} from '../helpers/utils';
 import {Navigation} from '../../types';
 
 type Props = {

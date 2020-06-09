@@ -1,14 +1,18 @@
 import React, {memo, useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import Background from '../Background';
-import Logo from '../Logo';
+import Logo from '../../../src/components/helpers/logo';
 import Header from '../Header';
 import Button from '../Button';
 import TextInput from '../TextInput';
 import BackButton from '../BackButton';
 import {theme} from '../../assets/theme';
 import {Navigation} from '../../types';
-import {emailValidator, passwordValidator, nameValidator} from '../core/utils';
+import {
+  emailValidator,
+  passwordValidator,
+  nameValidator,
+} from '../helpers/utils';
 
 type Props = {
   navigation: Navigation;
@@ -31,12 +35,12 @@ const RegisterScreen = ({navigation}: Props) => {
       return;
     }
 
-    navigation.navigate('HomeScreen');
+    navigation.navigate('WelcomeScreen');
   };
 
   return (
     <Background>
-      <BackButton goBack={() => navigation.navigate('HomeScreen')} />
+      <BackButton goBack={() => navigation.navigate('WelcomeScreen')} />
 
       <Logo />
 
