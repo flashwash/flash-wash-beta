@@ -1,7 +1,7 @@
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import {
-  HomeScreen,
+  WelcomeScreen,
   LoginScreen,
   RegisterScreen,
   ForgotPasswordScreen,
@@ -12,14 +12,14 @@ const isAuthorized: boolean = false;
 
 const Router = createStackNavigator(
   {
-    HomeScreen,
+    WelcomeScreen,
     LoginScreen,
     RegisterScreen,
     ForgotPasswordScreen,
     Main,
   },
   {
-    initialRouteName: !isAuthorized ? 'HomeScreen' : 'Main',
+    initialRouteName: !isAuthorized ? 'WelcomeScreen' : 'Main',
     headerMode: 'none',
   },
 );

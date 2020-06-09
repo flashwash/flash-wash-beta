@@ -32,28 +32,28 @@ const LoginScreen = ({navigation}: Props) => {
 
   return (
     <Background>
-      <BackButton goBack={() => navigation.navigate('HomeScreen')} />
+      <BackButton goBack={() => navigation.navigate('WelcomeScreen')} />
 
       <Logo />
       <View style={styles.textContainer}>
         <TextInput
           accessibilityStates
-          label="Email"
-          returnKeyType="next"
+          label={'Email'}
+          returnKeyType={'next'}
           value={email.value}
           onChangeText={text => setEmail({value: text, error: ''})}
           error={!!email.error}
           errorText={email.error}
-          autoCapitalize="none"
-          autoCompleteType="email"
-          textContentType="emailAddress"
-          keyboardType="email-address"
+          autoCapitalize={'none'}
+          autoCompleteType={'email'}
+          textContentType={'emailAddress'}
+          keyboardType={'email-address'}
         />
 
         <TextInput
           accessibilityStates
-          label="Contraseña"
-          returnKeyType="done"
+          label={'Contraseña'}
+          returnKeyType={'done'}
           value={password.value}
           onChangeText={text => setPassword({value: text, error: ''})}
           error={!!password.error}

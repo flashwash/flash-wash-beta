@@ -10,7 +10,7 @@ type Props = {
   navigation: Navigation;
 };
 
-const HomeScreen = ({navigation}: Props) => (
+const WelcomeScreen = ({navigation}: Props) => (
   <Background>
     <Logo />
     <Header>Flash Wash</Header>
@@ -29,4 +29,4 @@ const HomeScreen = ({navigation}: Props) => (
   </Background>
 );
 
-export default memo(HomeScreen);
+export default memo(WelcomeScreen);

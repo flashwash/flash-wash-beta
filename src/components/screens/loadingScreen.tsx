@@ -1,12 +1,12 @@
 import React, {memo} from 'react';
 import {StyleSheet, Text, View, ActivityIndicator} from 'react-native';
-import {Navigation} from '../../types';
+// import {Navigation} from '../../types';
 
-type Props = {
-  navigation: Navigation;
-};
+// type Props = {
+//   navigation: Navigation;
+// };
 
-const LoginScreen = ({navigation}: Props) => {
+const LoginScreen = () => {
   return (
     <View style={styles.container}>
       <Text>Loading</Text>
