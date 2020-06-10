@@ -5,7 +5,7 @@ import Background from '../Background';
 import BackButton from '../BackButton';
 import Logo from '../helpers/logo';
 import Header from '../Header';
-import TextInput from '../TextInput';
+import TextInput from '../helpers/TextInput';
 import {theme} from '../../assets/theme';
 import Button from '../Button';
 import {Navigation} from '../../types';

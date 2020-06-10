@@ -1,9 +1,9 @@
 import React, {memo, useState} from 'react';
 import {TouchableOpacity, StyleSheet, Text, View} from 'react-native';
 import Background from '../Background';
-import Logo from '../helpers/logo';
+import Logo from '../../../src/components/helpers/logo';
 import Button from '../Button';
-import TextInput from '../TextInput';
+import TextInput from '../helpers/TextInput';
 import BackButton from '../BackButton';
 import {theme} from '../../assets/theme';
 import {emailValidator, passwordValidator} from '../helpers/utils';

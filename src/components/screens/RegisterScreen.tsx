@@ -4,7 +4,7 @@ import Background from '../Background';
 import Logo from '../../../src/components/helpers/logo';
 import Header from '../Header';
 import Button from '../Button';
-import TextInput from '../TextInput';
+import TextInput from '../helpers/TextInput';
 import BackButton from '../BackButton';
 import {theme} from '../../assets/theme';
 import {Navigation} from '../../types';

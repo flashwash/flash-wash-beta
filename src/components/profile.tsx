@@ -3,7 +3,7 @@ import React from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {Divider, useTheme, Avatar, Title} from 'react-native-paper';
-import TextInput from '../components/TextInput';
+import TextInput from '../components/helpers/TextInput';
 
 import overlay from './overlay';
 
