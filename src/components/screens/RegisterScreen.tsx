@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import Background from '../Background';
 import Logo from '../../../src/components/helpers/logo';
 import Header from '../helpers/Header';
-import Button from '../Button';
+import Button from '../helpers/Button';
 import TextInput from '../helpers/TextInput';
 import BackButton from '../BackButton';
 import {theme} from '../../assets/theme';

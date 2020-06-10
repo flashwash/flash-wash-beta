@@ -7,7 +7,7 @@ import Logo from '../helpers/logo';
 import Header from '../helpers/Header';
 import TextInput from '../helpers/TextInput';
 import {theme} from '../../assets/theme';
-import Button from '../Button';
+import Button from '../helpers/Button';
 import {Navigation} from '../../types';
 
 type Props = {

@@ -2,7 +2,7 @@ import React, {memo} from 'react';
 import Background from '../Background';
 import Logo from '../../../src/components/helpers/logo';
 import Header from '../helpers/Header';
-import Button from '../Button';
+import Button from '../helpers/Button';
 // import Paragraph from '../Paragraph';
 import {Navigation} from '../../types';
 
