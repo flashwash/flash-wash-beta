@@ -2,7 +2,7 @@ import React, {memo, useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import Background from '../Background';
 import Logo from '../../../src/components/helpers/logo';
-import Header from '../Header';
+import Header from '../helpers/Header';
 import Button from '../Button';
 import TextInput from '../helpers/TextInput';
 import BackButton from '../BackButton';

@@ -4,7 +4,7 @@ import {emailValidator} from '../../../src/components/helpers/utils';
 import Background from '../Background';
 import BackButton from '../BackButton';
 import Logo from '../helpers/logo';
-import Header from '../Header';
+import Header from '../helpers/Header';
 import TextInput from '../helpers/TextInput';
 import {theme} from '../../assets/theme';
 import Button from '../Button';
