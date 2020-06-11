@@ -7,6 +7,7 @@ import {
   ForgotPasswordScreen,
 } from '../../src/components/screens';
 import {Main} from '../components/Main';
+
 const Stack = createStackNavigator();
 
 export default function AuthStack() {

@@ -61,7 +61,7 @@ export const DrawerContent = (props: Props) => {
           </TouchableOpacity>
           <Title style={styles.title}>Mario Herrera</Title>
           <Caption style={styles.caption}>@flashWashCEO</Caption>
-          {/* <Caption style={styles.caption}>{user.uid}</Caption> */}
+          <Caption style={styles.caption}>{user.uid}</Caption>
         </View>
         <Drawer.Section accessibilityStates style={styles.drawerSection}>
           <DrawerItem

@@ -1,10 +1,10 @@
 import React, {memo} from 'react';
 import Background from '../Background';
 import Logo from '../../../src/components/helpers/logo';
-import Header from '../helpers/Header';
 import Button from '../helpers/Button';
-// import Paragraph from '../Paragraph';
 import {Navigation} from '../../types';
+import {StyleSheet} from 'react-native';
+import {Headline} from 'react-native-paper';
 
 type Props = {
   navigation: Navigation;
@@ -13,7 +13,7 @@ type Props = {
 const WelcomeScreen = ({navigation}: Props) => (
   <Background>
     <Logo />
-    <Header>Flash Wash</Header>
+    <Headline style={styles.welcomeText}>Bienvenido</Headline>
     <Button
       accessibilityStates
       mode={'contained'}
@@ -30,3 +30,9 @@ const WelcomeScreen = ({navigation}: Props) => (
 );
 
 export default memo(WelcomeScreen);
+
+const styles = StyleSheet.create({
+  welcomeText: {
+    fontFamily: 'Impact',
+  },
+});
