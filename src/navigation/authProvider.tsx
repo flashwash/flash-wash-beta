@@ -1,7 +1,15 @@
 import React, {createContext, useState} from 'react';
 import auth from '@react-native-firebase/auth';
 
-export const AuthContext = createContext({});
+type ContextProps = {
+  user: any;
+  setUser: any;
+  login: any;
+  register: any;
+  logout: any;
+};
+
+export const AuthContext = createContext<Partial<ContextProps>>({});
 
 export const AuthProvider = ({children}) => {
   const [user, setUser] = useState(null);

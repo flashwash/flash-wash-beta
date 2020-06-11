@@ -1,4 +1,4 @@
-import React, {memo, useState} from 'react';
+import React, {memo, useState, useContext} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import Background from '../Background';
 import Logo from '../../../src/components/helpers/logo';
@@ -8,35 +8,37 @@ import TextInput from '../helpers/TextInput';
 import BackButton from '../BackButton';
 import {theme} from '../../assets/theme';
 import {Navigation} from '../../types';
-import {
-  emailValidator,
-  passwordValidator,
-  nameValidator,
-} from '../helpers/utils';
+import {AuthContext} from '../../navigation/authProvider';
+// import {
+//   emailValidator,
+//   passwordValidator,
+//   nameValidator,
+// } from '../helpers/utils';
 
 type Props = {
   navigation: Navigation;
 };
 
 const RegisterScreen = ({navigation}: Props) => {
-  const [name, setName] = useState({value: '', error: ''});
-  const [email, setEmail] = useState({value: '', error: ''});
-  const [password, setPassword] = useState({value: '', error: ''});
+  // const [name, setName] = useState({value: '', error: ''});
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const {register} = useContext(AuthContext);
 
-  const _onSignUpPressed = () => {
-    const nameError = nameValidator(name.value);
-    const emailError = emailValidator(email.value);
-    const passwordError = passwordValidator(password.value);
+  // const _onSignUpPressed = () => {
+  //   const nameError = nameValidator(name.value);
+  //   const emailError = emailValidator(email.value);
+  //   const passwordError = passwordValidator(password.value);
 
-    if (emailError || passwordError || nameError) {
-      setName({...name, error: nameError});
-      setEmail({...email, error: emailError});
-      setPassword({...password, error: passwordError});
-      return;
-    }
+  //   if (emailError || passwordError || nameError) {
+  //     setName({...name, error: nameError});
+  //     setEmail({...email, error: emailError});
+  //     setPassword({...password, error: passwordError});
+  //     return;
+  //   }
 
-    navigation.navigate('WelcomeScreen');
-  };
+  //   navigation.navigate('WelcomeScreen');
+  // };
 
   return (
     <Background>
@@ -46,7 +48,7 @@ const RegisterScreen = ({navigation}: Props) => {
 
       <Header>Crea Una Cuenta</Header>
 
-      <TextInput
+      {/* <TextInput
         accessibilityStates
         label={'Nombre'}
         returnKeyType="next"
@@ -54,16 +56,16 @@ const RegisterScreen = ({navigation}: Props) => {
         onChangeText={text => setName({value: text, error: ''})}
         error={!!name.error}
         errorText={name.error}
-      />
+      /> */}
 
       <TextInput
         accessibilityStates
         label={'Email'}
-        returnKeyType="next"
-        value={email.value}
-        onChangeText={text => setEmail({value: text, error: ''})}
-        error={!!email.error}
-        errorText={email.error}
+        returnKeyType={'next'}
+        value={email}
+        onChangeText={userEmail => setEmail(userEmail)}
+        // error={!!email.error}
+        // errorText={email.error}
         autoCapitalize="none"
         autoCompleteType="email"
         textContentType="emailAddress"
@@ -74,17 +76,17 @@ const RegisterScreen = ({navigation}: Props) => {
         accessibilityStates
         label={'Contraseña'}
         returnKeyType="done"
-        value={password.value}
-        onChangeText={text => setPassword({value: text, error: ''})}
-        error={!!password.error}
-        errorText={password.error}
+        value={password}
+        onChangeText={userPassword => setPassword(userPassword)}
+        // error={!!password.error}
+        // errorText={password.error}
         secureTextEntry
       />
 
       <Button
         accessibilityStates
         mode="contained"
-        onPress={_onSignUpPressed}
+        onPress={() => register(email, password)}
         style={styles.button}>
         Registrarse
       </Button>

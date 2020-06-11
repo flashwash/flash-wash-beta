@@ -59,7 +59,7 @@ export const HomeStack = () => {
               <Appbar.Content
                 accessibilityStates
                 title={
-                  title === 'Feed' ? (
+                  title === 'FlashWash' ? (
                     <MaterialCommunityIcons
                       style={{marginRight: 10}}
                       name={'twitter'}
