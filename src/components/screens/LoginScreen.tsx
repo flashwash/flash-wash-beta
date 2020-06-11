@@ -1,4 +1,4 @@
-import React, {memo, useState} from 'react';
+import React, {memo, useState, useContext} from 'react';
 import {TouchableOpacity, StyleSheet, Text, View} from 'react-native';
 import Background from '../Background';
 import Logo from '../../../src/components/helpers/logo';
@@ -6,29 +6,18 @@ import Button from '../helpers/Button';
 import TextInput from '../helpers/TextInput';
 import BackButton from '../BackButton';
 import {theme} from '../../assets/theme';
-import {emailValidator, passwordValidator} from '../helpers/utils';
+// import {emailValidator, passwordValidator} from '../helpers/utils';
 import {Navigation} from '../../types';
+import {AuthContext} from '../../navigation/authProvider';
 
 type Props = {
   navigation: Navigation;
 };
 
 const LoginScreen = ({navigation}: Props) => {
-  const [email, setEmail] = useState({value: '', error: ''});
-  const [password, setPassword] = useState({value: '', error: ''});
-
-  const _onLoginPressed = () => {
-    const emailError = emailValidator(email.value);
-    const passwordError = passwordValidator(password.value);
-
-    if (emailError || passwordError) {
-      setEmail({...email, error: emailError});
-      setPassword({...password, error: passwordError});
-      return;
-    }
-
-    navigation.navigate('Main');
-  };
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const {login} = useContext(AuthContext);
 
   return (
     <Background>
@@ -40,10 +29,8 @@ const LoginScreen = ({navigation}: Props) => {
           accessibilityStates
           label={'Email'}
           returnKeyType={'next'}
-          value={email.value}
-          onChangeText={text => setEmail({value: text, error: ''})}
-          error={!!email.error}
-          errorText={email.error}
+          value={email}
+          onChangeText={userEmail => setEmail(userEmail)}
           autoCapitalize={'none'}
           autoCompleteType={'email'}
           textContentType={'emailAddress'}
@@ -54,10 +41,8 @@ const LoginScreen = ({navigation}: Props) => {
           accessibilityStates
           label={'Contraseña'}
           returnKeyType={'done'}
-          value={password.value}
-          onChangeText={text => setPassword({value: text, error: ''})}
-          error={!!password.error}
-          errorText={password.error}
+          value={password}
+          onChangeText={userPassword => setPassword(userPassword)}
           secureTextEntry
         />
       </View>
@@ -68,7 +53,10 @@ const LoginScreen = ({navigation}: Props) => {
         </TouchableOpacity>
       </View>
 
-      <Button accessibilityStates mode={'contained'} onPress={_onLoginPressed}>
+      <Button
+        accessibilityStates
+        mode={'contained'}
+        onPress={() => login(email, password)}>
         Iniciar Sesion
       </Button>
 

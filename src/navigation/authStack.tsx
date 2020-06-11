@@ -5,9 +5,8 @@ import {
   LoginScreen,
   RegisterScreen,
   ForgotPasswordScreen,
-  // Main,
 } from '../../src/components/screens';
-
+import {Main} from '../components/Main';
 const Stack = createStackNavigator();
 
 export default function AuthStack() {
@@ -20,7 +19,7 @@ export default function AuthStack() {
         name={'ForgotPasswordScreen'}
         component={ForgotPasswordScreen}
       />
-      {/* <Stack.Screen name={'Main'} component={Main} /> */}
+      <Stack.Screen name={'Main'} component={Main} />
     </Stack.Navigator>
   );
 }

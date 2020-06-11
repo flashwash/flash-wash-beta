@@ -6,7 +6,7 @@ import {
   DrawerNavigationProp,
   DrawerContentComponentProps,
 } from '@react-navigation/drawer';
-import React from 'react';
+import React, { useContext } from 'react';
 // import {DrawerHomeComponentProps} from '../navigation/rootNavigator';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {
@@ -23,11 +23,13 @@ import Animated from 'react-native-reanimated';
 import {DrawerActions} from '@react-navigation/native';
 
 import {PreferencesContext} from './context/preferencesContext';
+import {AuthContext} from '../navigation/authProvider';
 type Props = DrawerContentComponentProps<DrawerNavigationProp<{}>>;
 
 export const DrawerContent = (props: Props) => {
   const paperTheme = useTheme();
   const {theme, toggleTheme} = React.useContext(PreferencesContext);
+  const {user, logout} = useContext(AuthContext);
 
   const translateX = Animated.interpolate(props.progress, {
     inputRange: [0, 0.5, 0.7, 0.8, 1],
@@ -59,6 +61,7 @@ export const DrawerContent = (props: Props) => {
           </TouchableOpacity>
           <Title style={styles.title}>Mario Herrera</Title>
           <Caption style={styles.caption}>@flashWashCEO</Caption>
+          {/* <Caption style={styles.caption}>{user.uid}</Caption> */}
         </View>
         <Drawer.Section accessibilityStates style={styles.drawerSection}>
           <DrawerItem
@@ -149,6 +152,17 @@ export const DrawerContent = (props: Props) => {
             )}
             label={'Contactanos'}
             onPress={() => props.navigation.navigate('Mensajes')}
+          />
+          <DrawerItem
+            icon={({size}) => (
+              <MaterialCommunityIcons
+                name={'exit-run'}
+                color={'#4FC3F7'}
+                size={size}
+              />
+            )}
+            label={'Cerrar Sesión'}
+            onPress={() => logout()}
           />
         </Drawer.Section>
         <Caption style={styles.footNote}>Version 0.1.06.08</Caption>

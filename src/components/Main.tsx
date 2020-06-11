@@ -47,5 +47,3 @@ export const Main = () => {
     </PreferencesContext.Provider>
   );
 };
-
-// export default memo(Main);

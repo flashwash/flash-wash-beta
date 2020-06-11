@@ -9,36 +9,15 @@ import BackButton from '../BackButton';
 import {theme} from '../../assets/theme';
 import {Navigation} from '../../types';
 import {AuthContext} from '../../navigation/authProvider';
-// import {
-//   emailValidator,
-//   passwordValidator,
-//   nameValidator,
-// } from '../helpers/utils';
 
 type Props = {
   navigation: Navigation;
 };
 
 const RegisterScreen = ({navigation}: Props) => {
-  // const [name, setName] = useState({value: '', error: ''});
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const {register} = useContext(AuthContext);
-
-  // const _onSignUpPressed = () => {
-  //   const nameError = nameValidator(name.value);
-  //   const emailError = emailValidator(email.value);
-  //   const passwordError = passwordValidator(password.value);
-
-  //   if (emailError || passwordError || nameError) {
-  //     setName({...name, error: nameError});
-  //     setEmail({...email, error: emailError});
-  //     setPassword({...password, error: passwordError});
-  //     return;
-  //   }
-
-  //   navigation.navigate('WelcomeScreen');
-  // };
 
   return (
     <Background>
@@ -48,24 +27,12 @@ const RegisterScreen = ({navigation}: Props) => {
 
       <Header>Crea Una Cuenta</Header>
 
-      {/* <TextInput
-        accessibilityStates
-        label={'Nombre'}
-        returnKeyType="next"
-        value={name.value}
-        onChangeText={text => setName({value: text, error: ''})}
-        error={!!name.error}
-        errorText={name.error}
-      /> */}
-
       <TextInput
         accessibilityStates
         label={'Email'}
         returnKeyType={'next'}
         value={email}
         onChangeText={userEmail => setEmail(userEmail)}
-        // error={!!email.error}
-        // errorText={email.error}
         autoCapitalize="none"
         autoCompleteType="email"
         textContentType="emailAddress"
@@ -78,8 +45,6 @@ const RegisterScreen = ({navigation}: Props) => {
         returnKeyType="done"
         value={password}
         onChangeText={userPassword => setPassword(userPassword)}
-        // error={!!password.error}
-        // errorText={password.error}
         secureTextEntry
       />
 
