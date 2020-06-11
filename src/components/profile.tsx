@@ -42,14 +42,16 @@ export const Profile = () => {
             </TouchableOpacity>
           </View>
         </View>
-        {/* <Title style={styles.title}>Mario Herrera</Title> */}
-        <View>
+        <View style={styles.nameContainer}>
           <TextInput
-            style={{
-              backgroundColor,
-              justifyContent: 'center',
-              fontWeight: 'bold',
-            }}
+            style={[
+              styles.nameText,
+              {
+                backgroundColor,
+                fontWeight: '200',
+                fontSize: 24,
+              },
+            ]}
             mode={'flat'}
             accessibilityStates
             disabled={true}
@@ -58,13 +60,13 @@ export const Profile = () => {
               user.displayName === null ? 'Nombre de Usuario' : user.displayName
             }
           />
-          <TouchableOpacity style={{marginLeft: 10}} onPress={() => {}}>
+          {/* <TouchableOpacity style={{marginLeft: 10}} onPress={() => {}}>
             <MaterialCommunityIcons
               name={'lead-pencil'}
               color={'#4FC3F7'}
               size={25}
             />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
         <Divider accessibilityStates />
         <View style={styles.emailContainer}>
@@ -140,9 +142,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  userNameContainer: {
-    display: 'flex',
-    flexDirection: 'row',
+  nameContainer: {
+    alignSelf: 'center',
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  nameText: {
+    fontFamily: 'HelveticaNeue',
+    color: '#52575D',
   },
   emailContainer: {
     display: 'flex',
