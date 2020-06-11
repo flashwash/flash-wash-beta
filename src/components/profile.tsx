@@ -1,9 +1,10 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useContext} from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
-import {Divider, useTheme, Avatar, Title} from 'react-native-paper';
+import {Divider, useTheme, Avatar} from 'react-native-paper';
 import TextInput from '../components/helpers/TextInput';
+import {AuthContext} from '../navigation/authProvider';
 
 import overlay from './overlay';
 
@@ -13,6 +14,7 @@ import overlay from './overlay';
 
 export const Profile = () => {
   const theme = useTheme();
+  const {user} = useContext(AuthContext);
   const backgroundColor = overlay(2, theme.colors.surface) as string;
 
   return (
@@ -20,14 +22,50 @@ export const Profile = () => {
       <ScrollView
         style={{backgroundColor}}
         contentContainerStyle={[styles.scrollViewContent, {backgroundColor}]}>
-        <TouchableOpacity style={{marginLeft: 10}} onPress={() => {}}>
+        <View style={{alignSelf: 'center'}}>
           <Avatar.Image
             accessibilityStates
-            source={require('../../src/assets/avatar.jpg')}
+            source={
+              user.photoURL === null
+                ? require('../../src/assets/empty_avatar.png')
+                : user.photoURL
+            }
             size={150}
           />
-        </TouchableOpacity>
-        <Title style={styles.title}>Mario Herrera</Title>
+          <View style={styles.add}>
+            <TouchableOpacity onPress={() => {}}>
+              <MaterialCommunityIcons
+                name={'plus-circle-outline'}
+                color={'#FFFFFF'}
+                size={25}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+        {/* <Title style={styles.title}>Mario Herrera</Title> */}
+        <View>
+          <TextInput
+            style={{
+              backgroundColor,
+              justifyContent: 'center',
+              fontWeight: 'bold',
+            }}
+            mode={'flat'}
+            accessibilityStates
+            disabled={true}
+            returnKeyType={'done'}
+            value={
+              user.displayName === null ? 'Nombre de Usuario' : user.displayName
+            }
+          />
+          <TouchableOpacity style={{marginLeft: 10}} onPress={() => {}}>
+            <MaterialCommunityIcons
+              name={'lead-pencil'}
+              color={'#4FC3F7'}
+              size={25}
+            />
+          </TouchableOpacity>
+        </View>
         <Divider accessibilityStates />
         <View style={styles.emailContainer}>
           <MaterialCommunityIcons
@@ -68,9 +106,16 @@ export const Profile = () => {
             label={'Email'}
             returnKeyType="done"
             disabled={true}
-            value={'test@gmail.com'}
+            value={user.email}
             keyboardType={'email-address'}
           />
+          <TouchableOpacity style={styles.editIcon} onPress={() => {}}>
+            <MaterialCommunityIcons
+              name={'lead-pencil'}
+              color={'#4FC3F7'}
+              size={25}
+            />
+          </TouchableOpacity>
         </View>
       </ScrollView>
     </>
@@ -84,9 +129,20 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     alignItems: 'center',
   },
-  title: {
-    marginTop: 20,
-    fontWeight: 'normal',
+  add: {
+    backgroundColor: '#4FC3F7',
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    width: 45,
+    height: 45,
+    borderRadius: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  userNameContainer: {
+    display: 'flex',
+    flexDirection: 'row',
   },
   emailContainer: {
     display: 'flex',
@@ -96,5 +152,9 @@ const styles = StyleSheet.create({
     marginLeft: 25,
     paddingRight: 10,
     paddingTop: 25,
+  },
+  editIcon: {
+    display: 'flex',
+    flexDirection: 'row',
   },
 });

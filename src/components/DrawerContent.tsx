@@ -6,29 +6,16 @@ import {
   DrawerNavigationProp,
   DrawerContentComponentProps,
 } from '@react-navigation/drawer';
-import React, { useContext } from 'react';
-// import {DrawerHomeComponentProps} from '../navigation/rootNavigator';
+import React, {useContext} from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
-import {
-  Avatar,
-  Caption,
-  Drawer,
-  Switch,
-  Text,
-  Title,
-  TouchableRipple,
-  useTheme,
-} from 'react-native-paper';
+import {Avatar, Caption, Drawer, Title, useTheme} from 'react-native-paper';
 import Animated from 'react-native-reanimated';
 import {DrawerActions} from '@react-navigation/native';
-
-import {PreferencesContext} from './context/preferencesContext';
 import {AuthContext} from '../navigation/authProvider';
 type Props = DrawerContentComponentProps<DrawerNavigationProp<{}>>;
 
 export const DrawerContent = (props: Props) => {
   const paperTheme = useTheme();
-  const {theme, toggleTheme} = React.useContext(PreferencesContext);
   const {user, logout} = useContext(AuthContext);
 
   const translateX = Animated.interpolate(props.progress, {
@@ -55,13 +42,18 @@ export const DrawerContent = (props: Props) => {
             }}>
             <Avatar.Image
               accessibilityStates
-              source={require('../../src/assets/avatar.jpg')}
-              size={50}
+              source={
+                user.photoURL === null
+                  ? require('../../src/assets/empty_avatar.png')
+                  : user.photoURL
+              }
+              size={60}
             />
           </TouchableOpacity>
-          <Title style={styles.title}>Mario Herrera</Title>
+          <Title style={styles.title}>
+            {user.displayName === null ? 'Nombre de Usuario' : user.displayName}
+          </Title>
           <Caption style={styles.caption}>@flashWashCEO</Caption>
-          <Caption style={styles.caption}>{user.uid}</Caption>
         </View>
         <Drawer.Section accessibilityStates style={styles.drawerSection}>
           <DrawerItem
@@ -120,16 +112,6 @@ export const DrawerContent = (props: Props) => {
             onPress={() => {}}
           />
         </Drawer.Section>
-        <Drawer.Section accessibilityStates title={'Ajustes'}>
-          <TouchableRipple accessibilityStates onPress={toggleTheme}>
-            <View style={styles.preference}>
-              <Text accessibilityStates>Modo Obscuro</Text>
-              <View pointerEvents="none">
-                <Switch accessibilityStates value={theme === 'dark'} />
-              </View>
-            </View>
-          </TouchableRipple>
-        </Drawer.Section>
         <Drawer.Section accessibilityStates style={styles.drawerSection}>
           <DrawerItem
             icon={({size}) => (
@@ -177,7 +159,7 @@ const styles = StyleSheet.create({
   },
   userInfoSection: {
     alignItems: 'center',
-    paddingTop: 5,
+    paddingTop: 10,
   },
   title: {
     marginTop: 20,
