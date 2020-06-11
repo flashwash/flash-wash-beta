@@ -49,7 +49,7 @@ export const Profile = () => {
               {
                 backgroundColor,
                 fontWeight: '200',
-                fontSize: 24,
+                fontSize: 22,
               },
             ]}
             mode={'flat'}
@@ -60,13 +60,15 @@ export const Profile = () => {
               user.displayName === null ? 'Nombre de Usuario' : user.displayName
             }
           />
-          {/* <TouchableOpacity style={{marginLeft: 10}} onPress={() => {}}>
-            <MaterialCommunityIcons
-              name={'lead-pencil'}
-              color={'#4FC3F7'}
-              size={25}
-            />
-          </TouchableOpacity> */}
+          <View style={styles.editText}>
+            <TouchableOpacity onPress={() => {}}>
+              <MaterialCommunityIcons
+                name={'lead-pencil'}
+                color={'#4FC3F7'}
+                size={25}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
         <Divider accessibilityStates />
         <View style={styles.emailContainer}>
@@ -111,13 +113,6 @@ export const Profile = () => {
             value={user.email}
             keyboardType={'email-address'}
           />
-          <TouchableOpacity style={styles.editIcon} onPress={() => {}}>
-            <MaterialCommunityIcons
-              name={'lead-pencil'}
-              color={'#4FC3F7'}
-              size={25}
-            />
-          </TouchableOpacity>
         </View>
       </ScrollView>
     </>
@@ -143,6 +138,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   nameContainer: {
+    display: 'flex',
     alignSelf: 'center',
     alignItems: 'center',
     marginTop: 10,
@@ -150,6 +146,14 @@ const styles = StyleSheet.create({
   nameText: {
     fontFamily: 'HelveticaNeue',
     color: '#52575D',
+    paddingRight: 25,
+    marginLeft: 20,
+  },
+  editText: {
+    position: 'absolute',
+    bottom: 30,
+    marginLeft: 30,
+    right: 0,
   },
   emailContainer: {
     display: 'flex',
