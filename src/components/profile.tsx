@@ -5,12 +5,7 @@ import {ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {Divider, useTheme, Avatar} from 'react-native-paper';
 import TextInput from '../components/helpers/TextInput';
 import {AuthContext} from '../navigation/authProvider';
-
 import overlay from './overlay';
-
-// type Props = {
-//   navigation: Navigation;
-// };
 
 export const Profile = () => {
   const theme = useTheme();
@@ -71,48 +66,68 @@ export const Profile = () => {
           </View>
         </View>
         <Divider accessibilityStates />
-        <View style={styles.emailContainer}>
-          <MaterialCommunityIcons
-            style={styles.icon}
-            name={'phone'}
-            color={'#4FC3F7'}
-            size={35}
-          />
-          <TextInput
-            style={{
-              width: '50%',
-              backgroundColor,
-              justifyContent: 'center',
-            }}
-            mode={'flat'}
-            accessibilityStates
-            label={'Telefono'}
-            disabled={true}
-            returnKeyType={'done'}
-            value={'123-456-789'}
-          />
-        </View>
-        <View style={styles.emailContainer}>
-          <MaterialCommunityIcons
-            style={styles.icon}
-            name={'email'}
-            color={'#4FC3F7'}
-            size={35}
-          />
-          <TextInput
-            style={{
-              width: '50%',
-              backgroundColor,
-              justifyContent: 'center',
-            }}
-            mode={'flat'}
-            accessibilityStates
-            label={'Email'}
-            returnKeyType="done"
-            disabled={true}
-            value={user.email}
-            keyboardType={'email-address'}
-          />
+        <View style={styles.detailsContainer}>
+          <View style={styles.phoneLine}>
+            <MaterialCommunityIcons
+              style={styles.icon}
+              name={'phone'}
+              color={'#4FC3F7'}
+              size={35}
+            />
+            <TextInput
+              style={{
+                width: '50%',
+                backgroundColor,
+                justifyContent: 'center',
+              }}
+              mode={'flat'}
+              accessibilityStates
+              label={'Telefono'}
+              disabled={true}
+              returnKeyType={'done'}
+              value={'123-456-789'}
+            />
+            <View style={styles.editPhone}>
+              <TouchableOpacity onPress={() => {}}>
+                <MaterialCommunityIcons
+                  name={'lead-pencil'}
+                  color={'#4FC3F7'}
+                  size={25}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View style={styles.emailLine}>
+            <MaterialCommunityIcons
+              style={styles.icon}
+              name={'email'}
+              color={'#4FC3F7'}
+              size={35}
+            />
+            <TextInput
+              style={{
+                width: '50%',
+                backgroundColor,
+                justifyContent: 'center',
+              }}
+              mode={'flat'}
+              accessibilityStates
+              label={'Email'}
+              returnKeyType="done"
+              disabled={true}
+              value={user.email}
+              keyboardType={'email-address'}
+            />
+            <View style={styles.editEmail}>
+              <TouchableOpacity onPress={() => {}}>
+                <MaterialCommunityIcons
+                  name={'lead-pencil'}
+                  color={'#4FC3F7'}
+                  size={25}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
         </View>
       </ScrollView>
     </>
@@ -155,9 +170,31 @@ const styles = StyleSheet.create({
     marginLeft: 30,
     right: 0,
   },
-  emailContainer: {
+  detailsContainer: {
+    display: 'flex',
+    alignSelf: 'center',
+    alignItems: 'center',
+    marginLeft: 50,
+  },
+  phoneLine: {
     display: 'flex',
     flexDirection: 'row',
+  },
+  editPhone: {
+    position: 'absolute',
+    bottom: 30,
+    marginRight: 80,
+    right: 0,
+  },
+  emailLine: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  editEmail: {
+    position: 'absolute',
+    bottom: 30,
+    marginRight: 80,
+    right: 0,
   },
   icon: {
     marginLeft: 25,
