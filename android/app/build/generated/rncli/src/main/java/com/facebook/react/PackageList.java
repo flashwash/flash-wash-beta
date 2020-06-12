@@ -17,6 +17,8 @@ import org.reactnative.maskedview.RNCMaskedViewPackage;
 import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
 // @react-native-firebase/auth
 import io.invertase.firebase.auth.ReactNativeFirebaseAuthPackage;
+// @react-native-firebase/storage
+import io.invertase.firebase.storage.ReactNativeFirebaseStoragePackage;
 // react-native-appearance
 import io.expo.appearance.RNCAppearancePackage;
 // react-native-geolocation-service
@@ -85,6 +87,7 @@ public class PackageList {
       new RNCMaskedViewPackage(),
       new ReactNativeFirebaseAppPackage(),
       new ReactNativeFirebaseAuthPackage(),
+      new ReactNativeFirebaseStoragePackage(),
       new RNCAppearancePackage(),
       new RNFusedLocationPackage(),
       new RNGestureHandlerPackage(),

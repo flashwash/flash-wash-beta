@@ -1,11 +1,11 @@
 [
     {
-        "merged": "D:\\flash-wash\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher_round1.png.flat",
-        "source": "D:\\flash-wash\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round1.png"
-    },
-    {
         "merged": "D:\\flash-wash\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher1.png.flat",
         "source": "D:\\flash-wash\\android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher1.png"
+    },
+    {
+        "merged": "D:\\flash-wash\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher_round1.png.flat",
+        "source": "D:\\flash-wash\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher_round1.png"
     },
     {
         "merged": "D:\\flash-wash\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi_ic_launcher1.png.flat",
