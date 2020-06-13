@@ -62,6 +62,16 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDd3p6mDR7No8-mLAFmBrvV90dU0rzA5IU" />
 
+        <provider
+            android:name="com.imagepicker.FileProvider"
+            android:authorities="com.flashwash.provider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
+
         <activity
             android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
             android:excludeFromRecents="true"

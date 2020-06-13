@@ -25,6 +25,8 @@ import io.expo.appearance.RNCAppearancePackage;
 import com.agontuk.RNFusedLocation.RNFusedLocationPackage;
 // react-native-gesture-handler
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+// react-native-image-picker
+import com.imagepicker.ImagePickerPackage;
 // react-native-maps
 import com.airbnb.android.react.maps.MapsPackage;
 // react-native-reanimated
@@ -91,6 +93,7 @@ public class PackageList {
       new RNCAppearancePackage(),
       new RNFusedLocationPackage(),
       new RNGestureHandlerPackage(),
+      new ImagePickerPackage(),
       new MapsPackage(),
       new ReanimatedPackage(),
       new SafeAreaContextPackage(),
