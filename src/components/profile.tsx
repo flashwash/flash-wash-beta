@@ -2,7 +2,8 @@
 import React, {useContext, useState} from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
-import {Divider, useTheme, Avatar} from 'react-native-paper';
+import Modal from 'react-native-modal';
+import {Divider, useTheme, Avatar, Button} from 'react-native-paper';
 import TextInput from '../components/helpers/TextInput';
 import {AuthContext} from '../navigation/authProvider';
 import overlay from './overlay';
@@ -11,13 +12,21 @@ export const Profile = () => {
   const theme = useTheme();
   const {user} = useContext(AuthContext);
   const backgroundColor = overlay(2, theme.colors.surface) as string;
-  const [state, setState] = useState({
-    disabledText: true,
+  const [name, setName] = useState({
     displayName: user.displayName || 'Nombre de Usuario',
   });
+  const [phone, setPhone] = useState({
+    userPhone: user.phone || '123-456-7890',
+  });
+  const [isNameModalVisible, setNameModalVisible] = useState(false);
+  const [isPhoneModalVisible, setPhoneModalVisible] = useState(false);
 
-  const toggleChangeName = () => {
-    setState({...state, disabledText: false});
+  const toggleNameModal = () => {
+    setNameModalVisible(!isNameModalVisible);
+  };
+
+  const togglePhoneModal = () => {
+    setPhoneModalVisible(!isPhoneModalVisible);
   };
 
   return (
@@ -57,20 +66,42 @@ export const Profile = () => {
             ]}
             mode={'flat'}
             accessibilityStates
-            disabled={state.disabledText}
+            disabled={true}
             returnKeyType={'done'}
-            value={state.displayName}
+            value={name.displayName}
           />
           <View style={styles.editText}>
-            <TouchableOpacity onPress={() => toggleChangeName}>
-              {state.disabledText === true && (
-                <MaterialCommunityIcons
-                  name={'lead-pencil'}
-                  color={'#4FC3F7'}
-                  size={25}
-                />
-              )}
+            <TouchableOpacity onPress={toggleNameModal}>
+              <MaterialCommunityIcons
+                name={'lead-pencil'}
+                color={'#4FC3F7'}
+                size={25}
+              />
             </TouchableOpacity>
+            <Modal
+              isVisible={isNameModalVisible}
+              onBackdropPress={() => setNameModalVisible(false)}
+              animationOut={'slideOutRight'}
+              animationInTiming={600}
+              animationOutTiming={600}
+              style={{marginTop: 30}}>
+              <View style={{flex: 1}}>
+                <TextInput
+                  mode={'flat'}
+                  accessibilityStates
+                  value={name.displayName}
+                  onChangeText={(displayName: any) =>
+                    setName({...name, displayName})
+                  }
+                />
+                <Button
+                  accessibilityStates
+                  mode={'contained'}
+                  onPress={toggleNameModal}>
+                  Guardar
+                </Button>
+              </View>
+            </Modal>
           </View>
         </View>
         <Divider accessibilityStates />
@@ -93,16 +124,40 @@ export const Profile = () => {
               label={'Telefono'}
               disabled={true}
               returnKeyType={'done'}
-              value={'123-456-789'}
+              value={phone.userPhone}
             />
             <View style={styles.editPhone}>
-              <TouchableOpacity onPress={() => {}}>
+              <TouchableOpacity onPress={togglePhoneModal}>
                 <MaterialCommunityIcons
                   name={'lead-pencil'}
                   color={'#4FC3F7'}
                   size={25}
                 />
               </TouchableOpacity>
+              <Modal
+                isVisible={isPhoneModalVisible}
+                onBackdropPress={() => setPhoneModalVisible(false)}
+                animationOut={'slideOutRight'}
+                animationInTiming={600}
+                animationOutTiming={600}
+                style={{marginTop: 30}}>
+                <View style={{flex: 1}}>
+                  <TextInput
+                    mode={'flat'}
+                    accessibilityStates
+                    value={phone.userPhone}
+                    onChangeText={(userPhone: any) =>
+                      setPhone({...phone, userPhone})
+                    }
+                  />
+                  <Button
+                    accessibilityStates
+                    mode={'contained'}
+                    onPress={togglePhoneModal}>
+                    Guardar
+                  </Button>
+                </View>
+              </Modal>
             </View>
           </View>
           <View style={styles.emailLine}>
@@ -126,15 +181,6 @@ export const Profile = () => {
               value={user.email}
               keyboardType={'email-address'}
             />
-            <View style={styles.editEmail}>
-              <TouchableOpacity onPress={() => {}}>
-                <MaterialCommunityIcons
-                  name={'lead-pencil'}
-                  color={'#4FC3F7'}
-                  size={25}
-                />
-              </TouchableOpacity>
-            </View>
           </View>
         </View>
       </ScrollView>
@@ -197,12 +243,6 @@ const styles = StyleSheet.create({
   emailLine: {
     display: 'flex',
     flexDirection: 'row',
-  },
-  editEmail: {
-    position: 'absolute',
-    bottom: 30,
-    marginRight: 80,
-    right: 0,
   },
   icon: {
     marginLeft: 25,
