@@ -8,6 +8,7 @@ import {
 } from '@react-navigation/drawer';
 import React, {useContext} from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
+import auth, {firebase} from '@react-native-firebase/auth';
 import {Avatar, Caption, Drawer, Title, useTheme} from 'react-native-paper';
 import Animated from 'react-native-reanimated';
 import {DrawerActions} from '@react-navigation/native';
@@ -15,6 +16,7 @@ import {AuthContext} from '../navigation/authProvider';
 type Props = DrawerContentComponentProps<DrawerNavigationProp<{}>>;
 
 export const DrawerContent = (props: Props) => {
+  const userDetails = auth().currentUser;
   const paperTheme = useTheme();
   const {user, logout} = useContext(AuthContext);
 
@@ -51,7 +53,9 @@ export const DrawerContent = (props: Props) => {
             />
           </TouchableOpacity>
           <Title style={styles.title}>
-            {user.displayName === null ? 'Nombre de Usuario' : user.displayName}
+            {userDetails.displayName === null
+              ? 'Nombre de Usuario'
+              : userDetails.displayName}
           </Title>
           <Caption style={styles.caption}>@flashWashCEO</Caption>
         </View>

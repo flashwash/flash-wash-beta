@@ -4,16 +4,18 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import {ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
 import Modal from 'react-native-modal';
 import {Divider, useTheme, Avatar, Button} from 'react-native-paper';
+import auth, {firebase} from '@react-native-firebase/auth';
 import TextInput from '../components/helpers/TextInput';
 import {AuthContext} from '../navigation/authProvider';
 import overlay from './overlay';
 
 export const Profile = () => {
+  const userDetails = auth().currentUser;
   const theme = useTheme();
   const {user} = useContext(AuthContext);
   const backgroundColor = overlay(2, theme.colors.surface) as string;
   const [name, setName] = useState({
-    displayName: user.displayName || 'Nombre de Usuario',
+    displayName: userDetails.displayName || 'Nombre de Usuario',
   });
   const [phone, setPhone] = useState({
     userPhone: user.phone || '123-456-7890',
@@ -21,7 +23,9 @@ export const Profile = () => {
   const [isNameModalVisible, setNameModalVisible] = useState(false);
   const [isPhoneModalVisible, setPhoneModalVisible] = useState(false);
 
-  const toggleNameModal = () => {
+  const toggleNameModal = async () => {
+    await auth().currentUser.updateProfile({displayName: name.displayName});
+    await firebase.auth().currentUser.reload(); //Needed to immediately update the value to the app
     setNameModalVisible(!isNameModalVisible);
   };
 
@@ -97,7 +101,7 @@ export const Profile = () => {
                 <Button
                   accessibilityStates
                   mode={'contained'}
-                  onPress={toggleNameModal}>
+                  onPress={() => toggleNameModal()}>
                   Guardar
                 </Button>
               </View>
