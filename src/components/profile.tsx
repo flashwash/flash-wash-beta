@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {Divider, useTheme, Avatar} from 'react-native-paper';
@@ -11,6 +11,14 @@ export const Profile = () => {
   const theme = useTheme();
   const {user} = useContext(AuthContext);
   const backgroundColor = overlay(2, theme.colors.surface) as string;
+  const [state, setState] = useState({
+    disabledText: true,
+    displayName: user.displayName || 'Nombre de Usuario',
+  });
+
+  const toggleChangeName = () => {
+    setState({...state, disabledText: false});
+  };
 
   return (
     <>
@@ -49,19 +57,19 @@ export const Profile = () => {
             ]}
             mode={'flat'}
             accessibilityStates
-            disabled={true}
+            disabled={state.disabledText}
             returnKeyType={'done'}
-            value={
-              user.displayName === null ? 'Nombre de Usuario' : user.displayName
-            }
+            value={state.displayName}
           />
           <View style={styles.editText}>
-            <TouchableOpacity onPress={() => {}}>
-              <MaterialCommunityIcons
-                name={'lead-pencil'}
-                color={'#4FC3F7'}
-                size={25}
-              />
+            <TouchableOpacity onPress={() => toggleChangeName}>
+              {state.disabledText === true && (
+                <MaterialCommunityIcons
+                  name={'lead-pencil'}
+                  color={'#4FC3F7'}
+                  size={25}
+                />
+              )}
             </TouchableOpacity>
           </View>
         </View>
