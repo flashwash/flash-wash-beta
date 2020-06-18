@@ -1,12 +1,19 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useContext, useState} from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {
+  Alert,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import Modal from 'react-native-modal';
 import {Divider, useTheme, Avatar, Button} from 'react-native-paper';
 import auth, {firebase} from '@react-native-firebase/auth';
 import TextInput from '../components/helpers/TextInput';
 import {AuthContext} from '../navigation/authProvider';
+import ImagePicker from 'react-native-image-picker';
 import overlay from './overlay';
 
 export const Profile = () => {
@@ -17,11 +24,24 @@ export const Profile = () => {
   const [name, setName] = useState({
     displayName: userDetails.displayName || 'Nombre de Usuario',
   });
-  const [phone, setPhone] = useState({
-    userPhone: user.phone || '123-456-7890',
+  const [photo, setPhoto] = useState({
+    userPhoto: user.photoURL || '',
   });
+  const options = {
+    title: 'Selecciona Imagen',
+    takePhotoButtonTitle: 'Tomar una Foto',
+    chooseFromLibraryButtonTitle: 'Escoge de tu libreria',
+    cancelButtonTitle: 'Cancelar',
+    storageOptions: {
+      skipBackup: true,
+      path: 'images',
+    },
+  };
+  // const [phone, setPhone] = useState({
+  //   userPhone: user.phone || '123-456-7890',
+  // });
   const [isNameModalVisible, setNameModalVisible] = useState(false);
-  const [isPhoneModalVisible, setPhoneModalVisible] = useState(false);
+  // const [isPhoneModalVisible, setPhoneModalVisible] = useState(false);
 
   const toggleNameModal = async () => {
     await auth().currentUser.updateProfile({displayName: name.displayName});
@@ -29,9 +49,30 @@ export const Profile = () => {
     setNameModalVisible(!isNameModalVisible);
   };
 
-  const togglePhoneModal = () => {
-    setPhoneModalVisible(!isPhoneModalVisible);
+  const togglePhotoUpload = async () => {
+    ImagePicker.showImagePicker(options, response => {
+      if (response.didCancel) {
+        Alert.alert('Cancelaste seleccionar foto 😟');
+      } else if (response.error) {
+        Alert.alert('And error occured: ', response.error);
+      } else {
+        const source = {uri: response.uri};
+        setPhoto({
+          userPhoto: source,
+        });
+      }
+    });
+    await auth().currentUser.updateProfile({
+      photoURL: photo.userPhoto.toString(),
+    });
+    // await firebase.auth().currentUser.reload();
   };
+
+  // const togglePhoneModal = async () => {
+  //   await auth().currentUser.updateProfile({userPhone: phone.userPhone});
+  //   await firebase.auth().currentUser.reload();
+  //   setPhoneModalVisible(!isPhoneModalVisible);
+  // };
 
   return (
     <>
@@ -42,14 +83,14 @@ export const Profile = () => {
           <Avatar.Image
             accessibilityStates
             source={
-              user.photoURL === null
+              photo.userPhoto === null
                 ? require('../../src/assets/empty_avatar.png')
-                : user.photoURL
+                : photo.userPhoto
             }
             size={150}
           />
           <View style={styles.add}>
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity onPress={togglePhotoUpload}>
               <MaterialCommunityIcons
                 name={'plus-circle-outline'}
                 color={'#FFFFFF'}
@@ -86,7 +127,7 @@ export const Profile = () => {
               isVisible={isNameModalVisible}
               onBackdropPress={() => setNameModalVisible(false)}
               animationOut={'slideOutRight'}
-              animationInTiming={600}
+              animationInTiming={500}
               animationOutTiming={600}
               style={{marginTop: 30}}>
               <View style={{flex: 1}}>
@@ -110,7 +151,7 @@ export const Profile = () => {
         </View>
         <Divider accessibilityStates />
         <View style={styles.detailsContainer}>
-          <View style={styles.phoneLine}>
+          {/* <View style={styles.phoneLine}>
             <MaterialCommunityIcons
               style={styles.icon}
               name={'phone'}
@@ -163,8 +204,8 @@ export const Profile = () => {
                 </View>
               </Modal>
             </View>
-          </View>
-          <View style={styles.emailLine}>
+          </View> */}
+          {/* <View style={styles.emailLine}>
             <MaterialCommunityIcons
               style={styles.icon}
               name={'email'}
@@ -185,7 +226,7 @@ export const Profile = () => {
               value={user.email}
               keyboardType={'email-address'}
             />
-          </View>
+          </View> */}
         </View>
       </ScrollView>
     </>
@@ -234,20 +275,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginLeft: 50,
   },
-  phoneLine: {
-    display: 'flex',
-    flexDirection: 'row',
-  },
-  editPhone: {
-    position: 'absolute',
-    bottom: 30,
-    marginRight: 80,
-    right: 0,
-  },
-  emailLine: {
-    display: 'flex',
-    flexDirection: 'row',
-  },
+  // phoneLine: {
+  //   display: 'flex',
+  //   flexDirection: 'row',
+  // },
+  // editPhone: {
+  //   position: 'absolute',
+  //   bottom: 30,
+  //   marginRight: 80,
+  //   right: 0,
+  // },
+  // emailLine: {
+  //   display: 'flex',
+  //   flexDirection: 'row',
+  // },
   icon: {
     marginLeft: 25,
     paddingRight: 10,
