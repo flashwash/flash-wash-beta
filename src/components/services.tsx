@@ -1,15 +1,14 @@
 import React, {useState, useEffect} from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  ImageBackground,
-  FlatList,
-  Image,
-} from 'react-native';
+import {StyleSheet, View, FlatList} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import Loading from './loading';
-import {Card} from 'react-native-paper';
+import {ServicesDetail} from './servicesDetail';
+
+type ServicesProps = React.ComponentProps<typeof ServicesDetail>;
+
+function renderServices({item}: {item: ServicesProps}) {
+  return <ServicesDetail {...item} />;
+}
 
 export const Services = () => {
   const [loading, setLoading] = useState(true); // Set loading to true on component mount
@@ -39,24 +38,7 @@ export const Services = () => {
   }
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={require('../assets/wash.jpg')}
-        style={styles.backgroundImage}
-      />
-      <FlatList
-        data={services}
-        // renderItem={renderItem}
-        renderItem={({item}) => (
-          <Card accessibilityStates>
-            <Text>Servicio: {item.id}</Text>
-            <Text>User Name: {item.name}</Text>
-            <Image source={item.image} />
-          </Card>
-        )}
-        ItemSeparatorComponent={() => (
-          <View style={{height: StyleSheet.hairlineWidth}} />
-        )}
-      />
+      <FlatList data={services} renderItem={renderServices} />
     </View>
   );
 };
