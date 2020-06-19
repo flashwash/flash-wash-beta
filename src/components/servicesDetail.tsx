@@ -23,7 +23,10 @@ export const ServicesDetail = (props: Props) => {
         </Card.Content>
         <Card.Cover
           accessibilityStates
-          source={{uri: 'https://picsum.photos/700'}}
+          source={{
+            uri:
+              'http://www.classychassycarwash.com/images/poQV2K.683d/1000w/Soft-Touch-Menu-sign.jpg',
+          }}
         />
       </Card>
     </View>
