@@ -1,6 +1,8 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Card, Paragraph} from 'react-native-paper';
+// import storage, {firebase} from '@react-native-firebase/storage';
+// Imports required for function to download image URL
 
 type Props = {
   id: number;
@@ -10,6 +12,11 @@ type Props = {
 };
 
 export const ServicesDetail = (props: Props) => {
+  // function to return URL from storage path in Firebase
+  //   const storageRef = storage().ref('full.png');
+  //   storageRef.getDownloadURL().then(url => {
+  //     console.log(url);
+  //   });
   return (
     <View style={styles.container}>
       <Card accessibilityStates>
@@ -24,8 +31,7 @@ export const ServicesDetail = (props: Props) => {
         <Card.Cover
           accessibilityStates
           source={{
-            uri:
-              'http://www.classychassycarwash.com/images/poQV2K.683d/1000w/Soft-Touch-Menu-sign.jpg',
+            uri: props.image,
           }}
         />
       </Card>
