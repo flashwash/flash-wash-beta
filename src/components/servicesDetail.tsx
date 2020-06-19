@@ -36,7 +36,9 @@ export const ServicesDetail = (props: Props) => {
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    margin: 30,
+    marginLeft: 30,
+    marginRight: 30,
+    marginBottom: 25,
     paddingTop: 15,
   },
   cardTitle: {
