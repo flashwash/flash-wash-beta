@@ -18,7 +18,7 @@ type Props = DrawerContentComponentProps<DrawerNavigationProp<{}>>;
 export const DrawerContent = (props: Props) => {
   const userDetails = auth().currentUser;
   const paperTheme = useTheme();
-  const {user, logout} = useContext(AuthContext);
+  const {logout} = useContext(AuthContext);
 
   const translateX = Animated.interpolate(props.progress, {
     inputRange: [0, 0.5, 0.7, 0.8, 1],
@@ -28,7 +28,6 @@ export const DrawerContent = (props: Props) => {
   return (
     <DrawerContentScrollView {...props}>
       <Animated.View
-        //@ts-ignore
         style={[
           styles.drawerContent,
           {
@@ -45,11 +44,11 @@ export const DrawerContent = (props: Props) => {
             <Avatar.Image
               accessibilityStates
               source={
-                user.photoURL === null
+                userDetails.photoURL === ''
                   ? require('../../src/assets/empty_avatar.png')
-                  : user.photoURL
+                  : {uri: userDetails.photoURL}
               }
-              size={60}
+              size={70}
             />
           </TouchableOpacity>
           <Title style={styles.title}>

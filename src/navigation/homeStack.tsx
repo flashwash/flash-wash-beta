@@ -1,23 +1,22 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useContext} from 'react';
+import React from 'react';
 import {TouchableOpacity} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {Appbar, Avatar, useTheme} from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {DrawerActions} from '@react-navigation/native';
-
+import auth from '@react-native-firebase/auth';
 import {BottomTabs} from '../components/bottomTabs';
 import {Services} from '../components/services';
 import {StackNavigatorParamlist} from '../types';
 import {Message} from '../components/message';
 import {Profile} from '../components/profile';
-import {AuthContext} from './authProvider';
 
 const Stack = createStackNavigator<StackNavigatorParamlist>();
 
 export const HomeStack = () => {
   const theme = useTheme();
-  const {user} = useContext(AuthContext);
+  const userDetails = auth().currentUser;
 
   return (
     <Stack.Navigator
@@ -53,9 +52,9 @@ export const HomeStack = () => {
                     accessibilityStates
                     size={40}
                     source={
-                      user.photoURL === null
+                      userDetails.photoURL === ''
                         ? require('../../src/assets/empty_avatar.png')
-                        : user.photoURL
+                        : {uri: userDetails.photoURL}
                     }
                   />
                 </TouchableOpacity>
