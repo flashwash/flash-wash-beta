@@ -50,7 +50,7 @@ export const HomeStack = () => {
                   }}>
                   <Avatar.Image
                     accessibilityStates
-                    size={40}
+                    size={50}
                     source={
                       userDetails.photoURL === ''
                         ? require('../../src/assets/empty_avatar.png')
