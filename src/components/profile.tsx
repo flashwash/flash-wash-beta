@@ -22,6 +22,7 @@ export const Profile = () => {
   const [name, setName] = useState({
     displayName: userDetails.displayName || 'Nombre de Usuario',
   });
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [photo, setPhoto] = useState({
     userPhoto: {uri: ''},
   });

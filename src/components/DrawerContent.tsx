@@ -90,7 +90,7 @@ export const DrawerContent = (props: Props) => {
               />
             )}
             label={'Mis Direcciones'}
-            onPress={() => {}}
+            onPress={() => props.navigation.navigate('userAddresses')}
           />
           <DrawerItem
             icon={({size}) => (

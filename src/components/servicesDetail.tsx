@@ -13,10 +13,10 @@ type Props = {
 
 export const ServicesDetail = (props: Props) => {
   // function to return URL from storage path in Firebase
-  //   const storageRef = storage().ref('full.png');
-  //   storageRef.getDownloadURL().then(url => {
-  //     console.log(url);
-  //   });
+  // const storageRef = storage().ref('address_icons/home.png');
+  // storageRef.getDownloadURL().then(url => {
+  //   console.log(url);
+  // });
   return (
     <View style={styles.container}>
       <Card accessibilityStates>

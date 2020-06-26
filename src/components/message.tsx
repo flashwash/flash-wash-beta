@@ -4,14 +4,8 @@ import {ScrollView, StyleSheet} from 'react-native';
 import {Headline, Caption, useTheme, Button} from 'react-native-paper';
 
 import overlay from './overlay';
-import BackButton from './BackButton';
-import {Navigation} from '../types';
 
-type Props = {
-  navigation: Navigation;
-};
-
-export const Message = ({navigation}: Props) => {
+export const Message = () => {
   const theme = useTheme();
 
   const backgroundColor = overlay(2, theme.colors.surface) as string;
