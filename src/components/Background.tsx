@@ -8,7 +8,7 @@ type Props = {
 const Background = ({children}: Props) => (
   <ImageBackground
     source={require('../assets/bigBubbles.png')}
-    resizeMode="cover"
+    resizeMode="repeat"
     style={styles.background}>
     <KeyboardAvoidingView style={styles.container} behavior="padding">
       {children}
