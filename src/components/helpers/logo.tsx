@@ -9,7 +9,6 @@ const styles = StyleSheet.create({
   image: {
     width: 128,
     height: 128,
-    marginTop: 70,
     alignSelf: 'center',
   },
 });

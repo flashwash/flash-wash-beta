@@ -1,13 +1,11 @@
 import React, {memo, useState, useContext} from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {TouchableOpacity, StyleSheet, Text, View, Image} from 'react-native';
-import Background from '../Background';
+import {TouchableOpacity, StyleSheet, Text, View} from 'react-native';
 import Logo from '../../../src/components/helpers/logo';
-import Button from '../helpers/Button';
 import TextInput from '../helpers/TextInput';
 import BackButton from '../BackButton';
 import {theme} from '../../assets/theme';
-// import {emailValidator, passwordValidator} from '../helpers/utils';
+import {emailValidator, passwordValidator} from '../helpers/utils';
 import {Navigation} from '../../types';
 import {AuthContext} from '../../navigation/authProvider';
 
@@ -16,9 +14,22 @@ type Props = {
 };
 
 const LoginScreen = ({navigation}: Props) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState({value: '', error: ''});
+  const [password, setPassword] = useState({value: '', error: ''});
   const {login} = useContext(AuthContext);
+
+  const onLoginPressed = () => {
+    const emailError = emailValidator(email.value);
+    const passwordError = passwordValidator(password.value);
+
+    if (emailError || passwordError) {
+      setEmail({...email, error: emailError});
+      setPassword({...password, error: passwordError});
+      return;
+    }
+
+    login(email, password);
+  };
 
   return (
     <View style={styles.container}>
@@ -29,8 +40,10 @@ const LoginScreen = ({navigation}: Props) => {
           accessibilityStates
           label={'Email'}
           returnKeyType={'next'}
-          value={email}
-          onChangeText={userEmail => setEmail(userEmail)}
+          value={email.value}
+          onChangeText={text => setEmail({value: text, error: ''})}
+          error={!!email.error}
+          errorText={email.error}
           autoCapitalize={'none'}
           autoCompleteType={'email'}
           textContentType={'emailAddress'}
@@ -41,8 +54,10 @@ const LoginScreen = ({navigation}: Props) => {
           accessibilityStates
           label={'Contraseña'}
           returnKeyType={'done'}
-          value={password}
-          onChangeText={userPassword => setPassword(userPassword)}
+          value={password.value}
+          onChangeText={text => setPassword({value: text, error: ''})}
+          error={!!password.error}
+          errorText={password.error}
           secureTextEntry
         />
       </View>
@@ -54,7 +69,7 @@ const LoginScreen = ({navigation}: Props) => {
       <View style={styles.containerSignIn}>
         <TouchableOpacity
           style={styles.btnSignIn}
-          onPress={() => login(email, password)}>
+          onPress={() => onLoginPressed()}>
           <Text style={styles.txtSignIn}>Iniciar Sesion</Text>
         </TouchableOpacity>
       </View>
@@ -75,12 +90,6 @@ const LoginScreen = ({navigation}: Props) => {
         </View>
       </TouchableOpacity>
 
-      {/* <View style={styles.row}>
-        <Text style={styles.label}>No Tienes Una Cuenta? </Text>
-        <TouchableOpacity onPress={() => navigation.navigate('RegisterScreen')}>
-          <Text style={styles.link}>Registrate</Text>
-        </TouchableOpacity>
-      </View> */}
       <TouchableOpacity
         style={styles.btnSignUp}
         onPress={() => navigation.navigate('RegisterScreen')}>
@@ -96,6 +105,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFF',
+    justifyContent: 'center',
+    // alignItems: 'center',
   },
   containerInputs: {
     flexDirection: 'column',
@@ -126,7 +137,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   txtSignIn: {
-    fontWeight: '600',
+    fontWeight: 'bold',
     color: '#FFF',
     fontSize: 17,
   },
