@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">FlashWash</string>
+    <string name="facebook_app_id">3335559796496783</string>
+    <string name="fb_login_protocol_scheme">fb3335559796496783</string>
 </resources>
