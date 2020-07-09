@@ -1,13 +1,9 @@
 import React, {memo, useState} from 'react';
-import {Text, StyleSheet, TouchableOpacity} from 'react-native';
+import {Text, StyleSheet, View, TouchableOpacity} from 'react-native';
 import {emailValidator} from '../../../src/components/helpers/utils';
-import Background from '../Background';
 import BackButton from '../BackButton';
 import Logo from '../helpers/logo';
-import Header from '../helpers/Header';
 import TextInput from '../helpers/TextInput';
-import {theme} from '../../assets/theme';
-import Button from '../helpers/Button';
 import {Navigation} from '../../types';
 
 type Props = {
@@ -29,55 +25,87 @@ const ForgotPasswordScreen = ({navigation}: Props) => {
   };
 
   return (
-    <Background>
+    <View style={styles.container}>
       <BackButton goBack={() => navigation.navigate('LoginScreen')} />
-
       <Logo />
-
-      <Header>Recuperar Contraseña</Header>
-
-      <TextInput
-        accessibilityStates
-        label={'E-mail'}
-        returnKeyType={'done'}
-        value={email.value}
-        onChangeText={text => setEmail({value: text, error: ''})}
-        error={!!email.error}
-        errorText={email.error}
-        autoCapitalize={'none'}
-        autoCompleteType={'email'}
-        textContentType={'emailAddress'}
-        keyboardType={'email-address'}
-      />
-
-      <Button
-        accessibilityStates
-        mode={'contained'}
-        onPress={_onSendPressed}
-        style={styles.button}>
-        Mandar Instrucciones
-      </Button>
+      <Text style={styles.txtSignUp}>
+        Ingresa el correo electronico con el que te registraste
+      </Text>
+      <View style={styles.containerInputs}>
+        <TextInput
+          accessibilityStates
+          label={'E-mail'}
+          returnKeyType={'done'}
+          value={email.value}
+          onChangeText={text => setEmail({value: text, error: ''})}
+          error={!!email.error}
+          errorText={email.error}
+          autoCapitalize={'none'}
+          autoCompleteType={'email'}
+          textContentType={'emailAddress'}
+          keyboardType={'email-address'}
+        />
+      </View>
+      <View style={styles.containerResetPassword}>
+        <TouchableOpacity
+          style={styles.btnResetPassword}
+          onPress={_onSendPressed}>
+          <Text style={styles.txtResetPassword}>Regenerar contraseña</Text>
+        </TouchableOpacity>
+      </View>
 
       <TouchableOpacity
-        style={styles.back}
+        style={styles.btnLogin}
         onPress={() => navigation.navigate('LoginScreen')}>
-        <Text style={styles.label}>← Regresar a inicio de sesion</Text>
+        <Text style={styles.txtLogin}>← Regresar a inicio de sesion</Text>
       </TouchableOpacity>
-    </Background>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  back: {
-    width: '100%',
-    marginTop: 12,
+  container: {
+    flex: 1,
+    backgroundColor: '#FFF',
+    justifyContent: 'center',
   },
-  button: {
-    marginTop: 12,
+  txtSignUp: {
+    fontSize: 12,
+    color: '#0F4C81',
+    fontWeight: '500',
+    marginTop: 30,
+    alignSelf: 'center',
   },
-  label: {
-    color: theme.colors.secondary,
-    width: '100%',
+  containerInputs: {
+    flexDirection: 'column',
+    marginHorizontal: 40,
+  },
+  containerResetPassword: {
+    flexDirection: 'row',
+    marginHorizontal: 40,
+    marginTop: 24,
+  },
+  btnResetPassword: {
+    backgroundColor: '#4FC3F7',
+    borderRadius: 24,
+    flex: 1,
+    height: 48,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  txtResetPassword: {
+    fontWeight: 'bold',
+    color: '#FFF',
+    fontSize: 17,
+  },
+  btnLogin: {
+    alignSelf: 'center',
+    marginTop: 25,
+  },
+  txtLogin: {
+    fontSize: 14,
+    color: '#0F4C81',
+    fontWeight: '500',
   },
 });
 
