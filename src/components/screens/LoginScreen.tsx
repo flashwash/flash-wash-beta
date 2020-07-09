@@ -1,6 +1,7 @@
 import React, {memo, useState, useContext} from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {TouchableOpacity, StyleSheet, Text, View} from 'react-native';
+import {TouchableOpacity, StyleSheet, Text, View, Alert} from 'react-native';
+import auth, {firebase} from '@react-native-firebase/auth';
 import Logo from '../../../src/components/helpers/logo';
 import TextInput from '../helpers/TextInput';
 import BackButton from '../BackButton';
@@ -8,6 +9,7 @@ import {theme} from '../../assets/theme';
 import {emailValidator, passwordValidator} from '../helpers/utils';
 import {Navigation} from '../../types';
 import {AuthContext} from '../../navigation/authProvider';
+import {LoginManager} from 'react-native-fbsdk';
 
 type Props = {
   navigation: Navigation;
@@ -29,6 +31,24 @@ const LoginScreen = ({navigation}: Props) => {
     }
 
     login(email, password);
+  };
+
+  const onFBLogin = () => {
+    LoginManager.logInWithPermissions(['public_profile', 'email']).then(
+      function(result) {
+        if (result.isCancelled) {
+          Alert.alert('Cancelaste iniciar sesion con facebook');
+        } else {
+          console.log(
+            'Login success with permissions: ' +
+              result.grantedPermissions.toString(),
+          );
+        }
+      },
+      function(error) {
+        console.log('Login fail with error: ' + error);
+      },
+    );
   };
 
   return (
@@ -79,7 +99,7 @@ const LoginScreen = ({navigation}: Props) => {
         <View style={styles.line} />
       </View>
 
-      <TouchableOpacity style={styles.btnSignFb} onPress={() => {}}>
+      <TouchableOpacity style={styles.btnSignFb} onPress={() => onFBLogin()}>
         <View style={styles.faceLogo}>
           <MaterialCommunityIcons
             name={'facebook'}
@@ -106,7 +126,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFF',
     justifyContent: 'center',
-    // alignItems: 'center',
   },
   containerInputs: {
     flexDirection: 'column',
