@@ -9,7 +9,7 @@ import {theme} from '../../assets/theme';
 import {emailValidator, passwordValidator} from '../helpers/utils';
 import {Navigation} from '../../types';
 import {AuthContext} from '../../navigation/authProvider';
-import {LoginManager} from 'react-native-fbsdk';
+import {LoginManager, AccessToken} from 'react-native-fbsdk';
 
 type Props = {
   navigation: Navigation;
@@ -39,10 +39,12 @@ const LoginScreen = ({navigation}: Props) => {
         if (result.isCancelled) {
           Alert.alert('Cancelaste iniciar sesion con facebook');
         } else {
-          console.log(
-            'Login success with permissions: ' +
-              result.grantedPermissions.toString(),
-          );
+          AccessToken.getCurrentAccessToken().then(data => {
+            const credential = firebase.auth.FacebookAuthProvider.credential(
+              data.accessToken,
+            );
+            firebase.auth().signInWithCredential(credential);
+          });
         }
       },
       function(error) {
