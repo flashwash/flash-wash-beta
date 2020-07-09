@@ -1,7 +1,7 @@
 import React, {memo, useState, useContext} from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {TouchableOpacity, StyleSheet, Text, View, Alert} from 'react-native';
-import auth, {firebase} from '@react-native-firebase/auth';
+import {firebase} from '@react-native-firebase/auth';
 import Logo from '../../../src/components/helpers/logo';
 import TextInput from '../helpers/TextInput';
 import BackButton from '../BackButton';
@@ -108,7 +108,7 @@ const LoginScreen = ({navigation}: Props) => {
             color={'#FFFFFF'}
             size={30}
           />
-          <Text style={styles.txtSignInFb}>Registrar con Facebook</Text>
+          <Text style={styles.txtSignInFb}>Iniciar con Facebook</Text>
         </View>
       </TouchableOpacity>
 
@@ -133,16 +133,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     marginHorizontal: 40,
     marginTop: 24,
-  },
-  forgotPassword: {
-    width: '100%',
-    alignItems: 'flex-end',
-    marginBottom: 24,
-  },
-  textContainer: {
-    width: '100%',
-    alignItems: 'flex-end',
-    marginTop: 60,
   },
   containerSignIn: {
     flexDirection: 'row',
@@ -208,17 +198,9 @@ const styles = StyleSheet.create({
     color: '#0F4C81',
     fontWeight: '500',
   },
-  row: {
-    flexDirection: 'row',
-    marginTop: 4,
-  },
   label: {
     fontWeight: 'bold',
     color: theme.colors.secondary,
-  },
-  link: {
-    fontWeight: 'bold',
-    color: '#00008B',
   },
 });
 
