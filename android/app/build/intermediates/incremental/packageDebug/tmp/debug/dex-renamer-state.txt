@@ -1,10 +1,13 @@
-#Wed Jul 08 16:20:12 PDT 2020
+#Wed Jul 08 16:57:53 PDT 2020
+path.3=classes4.dex
 path.2=classes3.dex
 path.1=classes2.dex
 path.0=classes.dex
+renamed.3=classes4.dex
 renamed.2=classes3.dex
 renamed.1=classes2.dex
 renamed.0=classes.dex
+base.3=D\:\\flash-wash\\android\\app\\build\\intermediates\\dex\\debug\\out\\classes4.dex
 base.2=D\:\\flash-wash\\android\\app\\build\\intermediates\\dex\\debug\\out\\classes3.dex
 base.1=D\:\\flash-wash\\android\\app\\build\\intermediates\\dex\\debug\\out\\classes2.dex
 base.0=D\:\\flash-wash\\android\\app\\build\\intermediates\\dex\\debug\\out\\classes.dex
