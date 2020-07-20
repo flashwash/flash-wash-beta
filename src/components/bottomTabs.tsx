@@ -9,7 +9,7 @@ import {useIsFocused, RouteProp} from '@react-navigation/native';
 import overlay from './overlay';
 // import {Feed} from './feed';
 import {HomeScreen} from './homeScreen';
-import {Notifications} from './notifications';
+import {AllNotifications} from './allNotifications';
 import {Services} from './services';
 import {StackNavigatorParamlist} from '../types';
 
@@ -61,7 +61,7 @@ export const BottomTabs = () => {
         />
         <Tab.Screen
           name={'Notificaciones'}
-          component={Notifications}
+          component={AllNotifications}
           options={{
             tabBarIcon: 'bell-outline',
             tabBarColor,

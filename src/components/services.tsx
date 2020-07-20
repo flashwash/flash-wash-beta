@@ -1,56 +1,59 @@
-import React, {useState, useEffect} from 'react';
-import {StyleSheet, View, FlatList} from 'react-native';
-import firestore from '@react-native-firebase/firestore';
-import Loading from './loading';
-import {ServicesDetail} from './servicesDetail';
+/* eslint-disable react-native/no-inline-styles */
+import React, {useState} from 'react';
+import color from 'color';
+import overlay from './overlay';
+import {Dimensions} from 'react-native';
+import {Promotions} from './promotions';
+import {useTheme} from 'react-native-paper';
+import {AllServices} from './allServices';
+import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
 
-type ServicesProps = React.ComponentProps<typeof ServicesDetail>;
+const initialLayout = {width: Dimensions.get('window').width};
 
-function renderServices({item}: {item: ServicesProps}) {
-  return <ServicesDetail {...item} />;
-}
+const All = () => <AllServices />;
+const Promos = () => <Promotions />;
 
 export const Services = () => {
-  const [loading, setLoading] = useState(true); // Set loading to true on component mount
-  const [services, setServices] = useState([]); // Initial empty array of services offered
+  const [index, setIndex] = useState(0);
+  const [routes] = useState([
+    {key: 'all', title: 'Paquetes'},
+    {key: 'promotions', title: 'Promociones'},
+  ]);
 
-  useEffect(() => {
-    const subscriber = firestore()
-      .collection('packages')
-      .onSnapshot(querySnapshot => {
-        const packages = [];
+  const theme = useTheme();
 
-        querySnapshot.forEach(documentSnapshot => {
-          packages.push({
-            ...documentSnapshot.data(),
-            key: documentSnapshot.id,
-          });
-        });
-        setServices(packages);
-        setLoading(false);
-      });
-    // Unsubscribe from events when no longer in use
-    return () => subscriber();
-  }, []);
+  const renderScene = SceneMap({
+    all: All,
+    promotions: Promos,
+  });
 
-  if (loading) {
-    return <Loading />;
-  }
+  const tabBarColor = theme.dark
+    ? (overlay(4, theme.colors.surface) as string)
+    : theme.colors.surface;
+
+  const rippleColor = theme.dark
+    ? color(tabBarColor).lighten(0.5)
+    : color(tabBarColor).darken(0.2);
+
+  const renderTabBar = props => (
+    <TabBar
+      {...props}
+      indicatorStyle={{backgroundColor: theme.colors.primary}}
+      style={{backgroundColor: tabBarColor, shadowColor: theme.colors.text}}
+      labelStyle={{color: '#FF6600', fontWeight: 'bold'}}
+      pressColor={rippleColor}
+    />
+  );
+
   return (
-    <View style={styles.container}>
-      <FlatList data={services} renderItem={renderServices} />
-    </View>
+    <React.Fragment>
+      <TabView
+        navigationState={{index, routes}}
+        renderScene={renderScene}
+        onIndexChange={setIndex}
+        initialLayout={initialLayout}
+        renderTabBar={renderTabBar}
+      />
+    </React.Fragment>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  backgroundImage: {
-    flex: 1,
-    resizeMode: 'cover',
-    height: 600,
-    opacity: 0.5,
-  },
-});
