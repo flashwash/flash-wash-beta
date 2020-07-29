@@ -24,7 +24,7 @@
     "babel-plugin-module-resolver": "3.2.0",
     "eslint-plugin-import": "2.18.2",
     "firebase-admin": "^8.12.1",
-    "formik": "^2.1.4",
+    "formik": "^2.1.5",
     "jetifier": "^1.6.5",
     "react": "16.11.0",
     "react-google-places-autocomplete": "^2.0.2",
@@ -55,7 +55,7 @@
     "tslint": "^6.1.2",
     "utility-types": "^3.10.0",
     "yarn": "^1.22.4",
-    "yup": "^0.28.3"
+    "yup": "^0.29.2"
   },
   "devDependencies": {
     "@babel/core": "7.9.0",

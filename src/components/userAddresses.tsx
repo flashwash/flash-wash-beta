@@ -1,87 +1,64 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useState} from 'react';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {
-  View,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-} from 'react-native';
-import Modal from 'react-native-modal';
-import TextInput from '../components/helpers/TextInput';
-import {
-  Button,
-  overlay,
-  useTheme,
-  Avatar,
-  Card,
-  Paragraph,
-  Headline,
-  Caption,
-} from 'react-native-paper';
+import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+// import Modal from 'react-native-modal';
+// import auth from '@react-native-firebase/auth';
+// import firestore from '@react-native-firebase/firestore';
+// import TextInput from '../components/helpers/TextInput';
+import {UserAddressesDialog} from './userAddressesDialog';
 
 export const UserAddresses = () => {
-  const theme = useTheme();
-  const backgroundColor = overlay(2, theme.colors.surface) as string;
-  const [isAddVisible, setIsAddVisible] = useState(false);
+  // const currentUserID = auth().currentUser.uid;
+  const [openDialog, setOpenDialog] = useState(false);
+  // const [userAddress, setUserAddress] = useState({
+  //   street: '',
+  //   street2: '',
+  //   zipCode: '',
+  //   notes: '',
+  // });
 
-  const toggleAddAddress = () => {
-    setIsAddVisible(true);
+  const toggleOpenDialog = () => {
+    setOpenDialog(true);
   };
+
+  // useEffect(() => {
+  //   const subscriber = firestore()
+  //     .doc(`users/${currentUserID}`)
+  //     .onSnapshot(querySnapshot => {
+  //       const packages = [];
+
+  //       querySnapshot.forEach(documentSnapshot => {
+  //         packages.push({
+  //           ...documentSnapshot.data(),
+  //           key: documentSnapshot.id,
+  //         });
+  //       });
+  //       setServices(packages);
+  //       setLoading(false);
+  //     });
+  //   // Unsubscribe from events when no longer in use
+  //   return () => subscriber();
+  // }, []);
+
   return (
-    <View style={styles.container}>
-      <View style={styles.containerAddAddress}>
-        <TouchableOpacity style={styles.btnAdd} onPress={toggleAddAddress}>
-          <View style={styles.faceLogo}>
-            <MaterialCommunityIcons name={'plus'} color={'#FFFFFF'} size={30} />
-            <Text style={styles.txtAdd}>Agrega una dirección</Text>
-          </View>
-        </TouchableOpacity>
+    <>
+      <View style={styles.container}>
+        <View style={styles.containerAddAddress}>
+          <TouchableOpacity style={styles.btnAdd} onPress={toggleOpenDialog}>
+            <View style={styles.faceLogo}>
+              <MaterialCommunityIcons
+                name={'plus'}
+                color={'#FFFFFF'}
+                size={30}
+              />
+              <Text style={styles.txtAdd}>Agrega una dirección</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
-      <Modal
-        isVisible={isAddVisible}
-        onBackdropPress={() => setIsAddVisible(false)}
-        animationIn={'slideInUp'}
-        animationOut={'slideOutDown'}
-        animationInTiming={500}
-        animationOutTiming={600}
-        style={styles.modalView}>
-        {/* <View style={styles.cardContainer}>
-          <Card accessibilityStates>
-            <Card.Title
-              accessibilityStates
-              // style={styles.cardTitle}
-              title={'Test'}
-            />
-            <Card.Content>
-              <Paragraph>{'testing'}</Paragraph>
-            </Card.Content>
-            <Card.Cover
-              accessibilityStates
-              source={require('../assets/cdjx.jpg')}
-            />
-          </Card>
-        </View> */}
-        <ScrollView
-          style={{flex: 1, backgroundColor}}
-          contentContainerStyle={[{backgroundColor}]}>
-          <Headline>Envianos un mensaje o Sugerencia</Headline>
-          <Caption>
-            Tus mensajes nos ayudan a mejorar nuestro servicio, todas las
-            sugerencias son atendidas en el orden que se reciben y responderemos
-            tus dudas o comentarios lo antes posible!
-          </Caption>
-          <Button
-            accessibilityStates
-            onPress={() => {}}
-            mode="contained"
-            labelStyle={{color: 'white'}}>
-            Escribir un Mensaje
-          </Button>
-        </ScrollView>
-      </Modal>
-    </View>
+      <UserAddressesDialog open={openDialog} setOpen={setOpenDialog} />
+    </>
   );
 };
 
@@ -92,13 +69,13 @@ const styles = StyleSheet.create({
   },
   containerAddAddress: {
     flexDirection: 'row',
-    marginHorizontal: 40,
     marginTop: 24,
+    marginHorizontal: 40,
   },
   btnAdd: {
+    flex: 1,
     backgroundColor: '#4FC3F7',
     borderRadius: 24,
-    flex: 1,
     height: 48,
     justifyContent: 'center',
     alignItems: 'center',
@@ -113,9 +90,6 @@ const styles = StyleSheet.create({
   faceLogo: {
     flexDirection: 'row',
     alignItems: 'center',
-  },
-  modalView: {
-    flex: 1,
   },
   cardContainer: {
     display: 'flex',
