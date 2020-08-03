@@ -24,8 +24,8 @@ export const BottomTabs = () => {
   const safeArea = useSafeArea();
   const isFocused = useIsFocused();
 
-  let requestIcon = 'car-electric';
-  let scheduleIcon = 'calendar-clock';
+  const requestIcon = 'car-electric';
+  const scheduleIcon = 'calendar-clock';
 
   const tabBarColor = theme.dark
     ? (overlay(6, theme.colors.surface) as string)

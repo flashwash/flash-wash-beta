@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, {useState} from 'react';
 import * as Yup from 'yup';
 import {Formik} from 'formik';
 import {Navigation} from '../types';
@@ -12,7 +12,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import TextInput from './helpers/TextInput';
-import {overlay, useTheme} from 'react-native-paper';
+import {overlay, useTheme, RadioButton} from 'react-native-paper';
 
 type IProps = {
   navigation: Navigation;
@@ -46,6 +46,7 @@ const schema = Yup.object().shape({
 
 export const UserAddressesDialog = ({navigation}: IProps) => {
   const theme = useTheme();
+  const [radioValue, setRadioValue] = useState('Casa');
   const backgroundColor = overlay(2, theme.colors.surface) as string;
   const onSubmit = () => {
     Alert.alert('Direccion guardada con exito.');
@@ -54,7 +55,7 @@ export const UserAddressesDialog = ({navigation}: IProps) => {
     <View style={styles.container}>
       <Formik
         initialValues={{
-          name: '',
+          name: radioValue,
           address1: '',
           address2: '',
           city: 'Juarez',
@@ -77,17 +78,24 @@ export const UserAddressesDialog = ({navigation}: IProps) => {
             style={{backgroundColor}}
             contentContainerStyle={[{backgroundColor}]}>
             <View style={styles.containerInputs}>
-              <TextInput
-                accessibilityStates
-                label={'*Titulo'}
-                returnKeyType={'next'}
-                value={values.name}
-                onChange={handleChange('name')}
-                autoCapitalize={'none'}
-              />
-              {touched.name && errors.name && (
-                <Text style={{fontSize: 10, color: 'red'}}>{errors.name}</Text>
-              )}
+              <View style={styles.containerSelection}>
+                <RadioButton.Group
+                  onValueChange={value => setRadioValue(value)}
+                  value={radioValue}>
+                  <View style={{flexDirection: 'row'}}>
+                    <RadioButton value={'Casa'} color={'#4FC3F7'} />
+                    <Text style={{paddingTop: 8}}>Casa</Text>
+                  </View>
+                  <View style={{flexDirection: 'row'}}>
+                    <RadioButton value={'Trabajo'} color={'#4FC3F7'} />
+                    <Text style={{paddingTop: 8}}>Trabajo</Text>
+                  </View>
+                  <View style={{flexDirection: 'row'}}>
+                    <RadioButton value={'Otro'} color={'#4FC3F7'} />
+                    <Text style={{paddingTop: 8}}>Otro</Text>
+                  </View>
+                </RadioButton.Group>
+              </View>
               <TextInput
                 accessibilityStates
                 label={'*Direccion (Calle y Numero)'}
@@ -166,6 +174,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFF',
     justifyContent: 'center',
+  },
+  containerSelection: {
+    flexDirection: 'row',
+    marginHorizontal: 40,
+    marginTop: 24,
+    justifyContent: 'space-between',
   },
   containerInputs: {
     flexDirection: 'column',
