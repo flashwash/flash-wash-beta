@@ -1,16 +1,21 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useState} from 'react';
+import React from 'react';
+import {Navigation} from '../types';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 // import Modal from 'react-native-modal';
 // import auth from '@react-native-firebase/auth';
 // import firestore from '@react-native-firebase/firestore';
 // import TextInput from '../components/helpers/TextInput';
-import {UserAddressesDialog} from './userAddressesDialog';
+// import {UserAddressesDialog} from './userAddressesDialog';
 
-export const UserAddresses = () => {
+type Props = {
+  navigation: Navigation;
+};
+
+export const UserAddresses = ({navigation}: Props) => {
   // const currentUserID = auth().currentUser.uid;
-  const [openDialog, setOpenDialog] = useState(false);
+  // const [openDialog, setOpenDialog] = useState(false);
   // const [userAddress, setUserAddress] = useState({
   //   street: '',
   //   street2: '',
@@ -18,9 +23,9 @@ export const UserAddresses = () => {
   //   notes: '',
   // });
 
-  const toggleOpenDialog = () => {
-    setOpenDialog(true);
-  };
+  // const toggleOpenDialog = () => {
+  //   setOpenDialog(true);
+  // };
 
   // useEffect(() => {
   //   const subscriber = firestore()
@@ -45,7 +50,9 @@ export const UserAddresses = () => {
     <>
       <View style={styles.container}>
         <View style={styles.containerAddAddress}>
-          <TouchableOpacity style={styles.btnAdd} onPress={toggleOpenDialog}>
+          <TouchableOpacity
+            style={styles.btnAdd}
+            onPress={() => navigation.navigate('userAddressesAdd')}>
             <View style={styles.faceLogo}>
               <MaterialCommunityIcons
                 name={'plus'}
@@ -57,7 +64,7 @@ export const UserAddresses = () => {
           </TouchableOpacity>
         </View>
       </View>
-      <UserAddressesDialog open={openDialog} setOpen={setOpenDialog} />
+      {/* <UserAddressesDialog open={openDialog} setOpen={setOpenDialog} /> */}
     </>
   );
 };

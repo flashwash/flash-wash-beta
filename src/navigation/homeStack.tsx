@@ -12,6 +12,7 @@ import {StackNavigatorParamlist} from '../types';
 import {Message} from '../components/message';
 import {Profile} from '../components/profile';
 import {UserAddresses} from '../components/userAddresses';
+import {UserAddressesDialog} from '../components/userAddressesDialog';
 
 const Stack = createStackNavigator<StackNavigatorParamlist>();
 
@@ -100,6 +101,11 @@ export const HomeStack = () => {
         name={'userAddresses'}
         component={UserAddresses}
         options={{headerTitle: 'Mis Direcciones'}}
+      />
+      <Stack.Screen
+        name={'userAddressesAdd'}
+        component={UserAddressesDialog}
+        options={{headerTitle: 'Agrega una direccion'}}
       />
       <Stack.Screen
         name={'Mensajes'}

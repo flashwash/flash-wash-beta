@@ -16,6 +16,7 @@ export type StackNavigatorParamlist = {
   Mensajes: undefined;
   Profile: undefined;
   userAddresses: undefined;
+  userAddressesAdd: undefined;
 };
 
 export type Navigation = {
