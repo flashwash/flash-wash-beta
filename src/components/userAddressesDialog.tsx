@@ -11,6 +11,8 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 import TextInput from './helpers/TextInput';
 import {overlay, useTheme, RadioButton} from 'react-native-paper';
 
@@ -45,12 +47,10 @@ const schema = Yup.object().shape({
 });
 
 export const UserAddressesDialog = ({navigation}: IProps) => {
+  const currentUserID = auth().currentUser.uid;
   const theme = useTheme();
   const [radioValue, setRadioValue] = useState('Casa');
   const backgroundColor = overlay(2, theme.colors.surface) as string;
-  const onSubmit = () => {
-    Alert.alert('Direccion guardada con exito.');
-  };
   return (
     <View style={styles.container}>
       <Formik
@@ -64,7 +64,24 @@ export const UserAddressesDialog = ({navigation}: IProps) => {
           notes: '',
         }}
         validationSchema={schema}
-        onSubmit={onSubmit}>
+        onSubmit={(values, {resetForm}) => {
+          firestore()
+            .collection('users')
+            .doc(currentUserID)
+            .collection('addresses')
+            .doc()
+            .set({
+              name: values.name,
+              address1: values.address1,
+              address2: values.address2,
+              city: values.city,
+              state: values.state,
+              zip: values.zip,
+              notes: values.notes,
+            });
+          resetForm();
+          Alert.alert('Direccion guardada con exito.');
+        }}>
         {({
           values,
           errors,
@@ -73,97 +90,99 @@ export const UserAddressesDialog = ({navigation}: IProps) => {
           handleReset,
           touched,
           setFieldTouched,
-        }) => (
-          <ScrollView
-            style={{backgroundColor}}
-            contentContainerStyle={[{backgroundColor}]}>
-            <View style={styles.containerInputs}>
-              <View style={styles.containerSelection}>
-                <RadioButton.Group
-                  onValueChange={value => setRadioValue(value)}
-                  value={radioValue}>
-                  <View style={{flexDirection: 'row'}}>
-                    <RadioButton value={'Casa'} color={'#4FC3F7'} />
-                    <Text style={{paddingTop: 8}}>Casa</Text>
-                  </View>
-                  <View style={{flexDirection: 'row'}}>
-                    <RadioButton value={'Trabajo'} color={'#4FC3F7'} />
-                    <Text style={{paddingTop: 8}}>Trabajo</Text>
-                  </View>
-                  <View style={{flexDirection: 'row'}}>
-                    <RadioButton value={'Otro'} color={'#4FC3F7'} />
-                    <Text style={{paddingTop: 8}}>Otro</Text>
-                  </View>
-                </RadioButton.Group>
+        }) => {
+          return (
+            <ScrollView
+              style={{backgroundColor}}
+              contentContainerStyle={[{backgroundColor}]}>
+              <View style={styles.containerInputs}>
+                <View style={styles.containerSelection}>
+                  <RadioButton.Group
+                    onValueChange={value => setRadioValue(value)}
+                    value={radioValue}>
+                    <View style={{flexDirection: 'row'}}>
+                      <RadioButton value={'Casa'} color={'#4FC3F7'} />
+                      <Text style={{paddingTop: 8}}>Casa</Text>
+                    </View>
+                    <View style={{flexDirection: 'row'}}>
+                      <RadioButton value={'Trabajo'} color={'#4FC3F7'} />
+                      <Text style={{paddingTop: 8}}>Trabajo</Text>
+                    </View>
+                    <View style={{flexDirection: 'row'}}>
+                      <RadioButton value={'Otro'} color={'#4FC3F7'} />
+                      <Text style={{paddingTop: 8}}>Otro</Text>
+                    </View>
+                  </RadioButton.Group>
+                </View>
+                <TextInput
+                  accessibilityStates
+                  label={'*Direccion (Calle y Numero)'}
+                  returnKeyType={'next'}
+                  value={values.address1}
+                  onBlur={() => setFieldTouched('address1')}
+                  onChangeText={handleChange('address1')}
+                  autoCapitalize={'none'}
+                />
+                {touched.address1 && errors.address1 && (
+                  <Text style={{fontSize: 10, color: 'red'}}>
+                    {errors.address1}
+                  </Text>
+                )}
+                <TextInput
+                  accessibilityStates
+                  label={'*Colonia o Fracc.'}
+                  returnKeyType={'next'}
+                  value={values.address2}
+                  onBlur={() => setFieldTouched('address2')}
+                  onChangeText={handleChange('address2')}
+                  autoCapitalize={'none'}
+                />
+                {touched.address2 && errors.address2 && (
+                  <Text style={{fontSize: 10, color: 'red'}}>
+                    {errors.address2}
+                  </Text>
+                )}
+                <TextInput
+                  accessibilityStates
+                  label={'*C.P.'}
+                  returnKeyType={'next'}
+                  value={values.zip}
+                  keyboardType={'number-pad'}
+                  onBlur={() => setFieldTouched('zip')}
+                  onChangeText={handleChange('zip')}
+                  maxLength={5}
+                />
+                {touched.zip && errors.zip && (
+                  <Text style={{fontSize: 10, color: 'red'}}>{errors.zip}</Text>
+                )}
+                <TextInput
+                  accessibilityStates
+                  label={'Notas Adicionales'}
+                  returnKeyType={'next'}
+                  multiline={true}
+                  value={values.notes}
+                  onChangeText={handleChange('notes')}
+                  autoCapitalize={'none'}
+                />
+                <View style={styles.containerActionBttns}>
+                  <TouchableOpacity
+                    style={styles.actionCancelButton}
+                    onPress={() => {
+                      handleReset();
+                      navigation.navigate('userAddresses');
+                    }}>
+                    <Text style={styles.actionText}>Regresar</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    style={styles.actionButton}
+                    onPress={handleSubmit}>
+                    <Text style={styles.actionText}>Guardar</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
-              <TextInput
-                accessibilityStates
-                label={'*Direccion (Calle y Numero)'}
-                returnKeyType={'next'}
-                value={values.address1}
-                onBlur={() => setFieldTouched('address1')}
-                onChangeText={handleChange('address1')}
-                autoCapitalize={'none'}
-              />
-              {touched.address1 && errors.address1 && (
-                <Text style={{fontSize: 10, color: 'red'}}>
-                  {errors.address1}
-                </Text>
-              )}
-              <TextInput
-                accessibilityStates
-                label={'*Colonia o Fracc.'}
-                returnKeyType={'next'}
-                value={values.address2}
-                onBlur={() => setFieldTouched('address2')}
-                onChangeText={handleChange('address2')}
-                autoCapitalize={'none'}
-              />
-              {touched.address2 && errors.address2 && (
-                <Text style={{fontSize: 10, color: 'red'}}>
-                  {errors.address2}
-                </Text>
-              )}
-              <TextInput
-                accessibilityStates
-                label={'*C.P.'}
-                returnKeyType={'next'}
-                value={values.zip}
-                keyboardType={'number-pad'}
-                onBlur={() => setFieldTouched('zip')}
-                onChangeText={handleChange('zip')}
-                maxLength={5}
-              />
-              {touched.zip && errors.zip && (
-                <Text style={{fontSize: 10, color: 'red'}}>{errors.zip}</Text>
-              )}
-              <TextInput
-                accessibilityStates
-                label={'Notas Adicionales'}
-                returnKeyType={'next'}
-                multiline={true}
-                value={values.notes}
-                onChangeText={handleChange('notes')}
-                autoCapitalize={'none'}
-              />
-              <View style={styles.containerActionBttns}>
-                <TouchableOpacity
-                  style={styles.actionCancelButton}
-                  onPress={() => {
-                    handleReset();
-                    navigation.navigate('userAddresses');
-                  }}>
-                  <Text style={styles.actionText}>Regresar</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={styles.actionButton}
-                  onPress={handleSubmit}>
-                  <Text style={styles.actionText}>Guardar</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </ScrollView>
-        )}
+            </ScrollView>
+          );
+        }}
       </Formik>
     </View>
   );
